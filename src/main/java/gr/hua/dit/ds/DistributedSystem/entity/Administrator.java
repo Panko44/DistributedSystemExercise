@@ -21,8 +21,8 @@ public class Administrator {
     public Administrator() {
     }
 
-    public Administrator(String amin_id, String password, String email) {
-        this.admin_id = amin_id;
+    public Administrator(String admin_id, String password, String email) {
+        this.admin_id = admin_id;
         this.password = password;
         this.email = email;
     }

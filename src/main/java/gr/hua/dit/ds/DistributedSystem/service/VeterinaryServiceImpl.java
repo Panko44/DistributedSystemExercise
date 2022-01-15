@@ -1,11 +1,9 @@
-package gr.hua.dit.ds.DistributedSystem.controller;
+package gr.hua.dit.ds.DistributedSystem.service;
 
 import gr.hua.dit.ds.DistributedSystem.repository.VeterinaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class VeterinaryController {
+public class VeterinaryServiceImpl implements VeterinaryService{
 
     @Autowired
     private VeterinaryRepository veterinaryRepository;

@@ -1,11 +1,9 @@
-package gr.hua.dit.ds.DistributedSystem.controller;
+package gr.hua.dit.ds.DistributedSystem.service;
 
 import gr.hua.dit.ds.DistributedSystem.repository.CitizenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class CitizenController {
+public class CitizenServiceImpl implements CitizenService{
 
     @Autowired
     private CitizenRepository citizenRepository;

@@ -1,12 +1,9 @@
-package gr.hua.dit.ds.DistributedSystem.controller;
+package gr.hua.dit.ds.DistributedSystem.service;
 
 import gr.hua.dit.ds.DistributedSystem.repository.MunicipalEmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
 
-
-@RestController
-public class MunicipalEmployeeController {
+public class MunicipalEmployeeServiceImpl implements MunicipalEmployeeService{
 
     @Autowired
     private MunicipalEmployeeRepository municipalEmployeeRepository;
@@ -18,4 +15,5 @@ public class MunicipalEmployeeController {
     public void notificationOwner(){
 
     }
+
 }
