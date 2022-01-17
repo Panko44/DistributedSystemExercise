@@ -8,12 +8,14 @@ public class MunicipalEmployeeServiceImpl implements MunicipalEmployeeService{
     @Autowired
     private MunicipalEmployeeRepository municipalEmployeeRepository;
 
-    public void logIn(){
+
+    @Override
+    public void logIn() {
 
     }
 
-    public void notificationOwner(){
+    @Override
+    public void notificationOwner() {
 
     }
-
 }

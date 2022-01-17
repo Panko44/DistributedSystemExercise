@@ -11,31 +11,4 @@ import java.util.List;
 
 public class AdministatorController {
 
-    @Autowired
-    private AdministratorRepository administratorRepository;
-
-    public List<Administrator> ListUsers(){
-        return  administratorRepository.findAll();
-    }
-
-
-    public void PrintUser(){
-
-    }
-
-    public void modificationData(){
-
-    }
-
-    public void addUser(){
-
-    }
-
-    public void deleteUser(){
-
-    }
-
-    public void logIn(){
-
-    }
 }

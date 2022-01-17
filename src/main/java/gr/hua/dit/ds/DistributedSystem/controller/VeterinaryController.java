@@ -7,23 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class VeterinaryController {
 
-    @Autowired
-    private VeterinaryRepository veterinaryRepository;
 
-    public void logIn(){
-
-    }
-
-    public void examinationStatement(){
-
-    }
-
-    public void updateΑnimalΗistory(){
-
-    }
-
-    public void confirmationData(){
-
-    }
 
 }

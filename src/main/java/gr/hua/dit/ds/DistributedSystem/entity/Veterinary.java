@@ -12,7 +12,7 @@ public class Veterinary{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "AMKA")
-    private String AMKA;
+    private int AMKA;
 
     @Column(name = "municipalHouse")
     private String municipalHouse;
@@ -29,7 +29,7 @@ public class Veterinary{
     public Veterinary() {
     }
 
-    public Veterinary(String fullName, String AMKA, String municipalHouse, String password, String email, String age) {
+    public Veterinary(String fullName, int AMKA, String municipalHouse, String password, String email, String age) {
         this.fullName = fullName;
         this.AMKA = AMKA;
         this.municipalHouse = municipalHouse;
@@ -46,11 +46,11 @@ public class Veterinary{
         this.fullName = fullName;
     }
 
-    public String getAMKA() {
+    public int getAMKA() {
         return AMKA;
     }
 
-    public void setAMKA(String AMKA) {
+    public void setAMKA(int AMKA) {
         this.AMKA = AMKA;
     }
 

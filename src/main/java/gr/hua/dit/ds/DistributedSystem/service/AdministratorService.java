@@ -8,16 +8,27 @@ import java.util.List;
 
 public interface AdministratorService {
 
-    public List<Administrator> ListUsers();
+    public void PrintCitizens();
 
-    public void PrintUser();
+    public void PrintMunicipalEmployees();
 
-    public void modificationData();
+    public void PrintVeterinaries();
 
-    public void addUser();
+    public void modificationData(Integer AMKA);
 
-    public void deleteUser();
+    public void addCitizen();
+
+    public void addMunicipalEmployee();
+
+    public void addVeterinary();
+
+    public void deleteCitizen(Integer AMKA);
+
+    public void deleteMunicipalEmployee(Integer AMKA);
+
+    public void deleteVeterinary(Integer AMKA);
 
     public void logIn();
 
+    boolean logIn(String email, String password);
 }

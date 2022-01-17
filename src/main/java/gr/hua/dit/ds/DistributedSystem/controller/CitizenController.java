@@ -7,27 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CitizenController {
 
-    @Autowired
-    private CitizenRepository citizenRepository;
 
-    public void logIn(){
-
-    }
-
-    public void addNewPet(){
-
-    }
-
-    public void lostPet(){
-
-    }
-
-    public void findPet(){
-
-    }
-
-    public void registrationPersonalData(){
-
-    }
 
 }

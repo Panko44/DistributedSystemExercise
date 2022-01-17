@@ -19,7 +19,7 @@ public class Citizen {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "AMKA")
-    private String AMKA;
+    private int AMKA;
 
     @Column(name = "municipalHouse")
     private String municipalHouse;
@@ -30,7 +30,7 @@ public class Citizen {
     @Column(name = "email")
     private String email;
 
-    public Citizen(String address, String age, String fullName, String AMKA, String municipalHouse, String password, String email) {
+    public Citizen(String address, String age, String fullName, int AMKA, String municipalHouse, String password, String email) {
         this.address = address;
         this.age = age;
         this.fullName = fullName;
@@ -67,11 +67,11 @@ public class Citizen {
         this.fullName = fullName;
     }
 
-    public String getAMKA() {
+    public int getAMKA() {
         return AMKA;
     }
 
-    public void setAMKA(String AMKA) {
+    public void setAMKA(int AMKA) {
         this.AMKA = AMKA;
     }
 
