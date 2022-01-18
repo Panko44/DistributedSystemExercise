@@ -37,6 +37,7 @@ public class Veterinary{
     private List<Pet> petList;
 
     public Veterinary() {
+
     }
 
     public Veterinary(String fullName, int AMKA, String municipalHouse, String password, String email, String age) {

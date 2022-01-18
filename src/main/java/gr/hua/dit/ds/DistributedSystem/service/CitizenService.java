@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public interface CitizenService {
 
-    public void logIn();
+    public boolean logIn(String email , String password);
 
     public void addNewPet();
 

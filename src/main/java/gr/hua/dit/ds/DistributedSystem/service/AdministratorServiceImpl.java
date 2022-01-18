@@ -9,10 +9,14 @@ import gr.hua.dit.ds.DistributedSystem.repository.CitizenRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.MunicipalEmployeeRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.VeterinaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 import javax.persistence.EntityManager;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,33 +37,41 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
 
     @Autowired
     public AdministratorServiceImpl(AdministratorRepository admin ){
+
         administratorRepository = admin ;
     }
 
     @Override
-    public void PrintCitizens(){
+    public List<Citizen> ListCitizens(){
+
         List<Citizen> list = citizenRepository.findAll();
+        return list;
     }
 
     @Override
-    public void PrintMunicipalEmployees(){
+    public List<ΜunicipalΕmployee> ListMunicipalEmployees(){
+
         List<ΜunicipalΕmployee> list = municipalEmployeeRepository.findAll();
+        return list;
     }
 
     @Override
-    public void PrintVeterinaries(){
+    public List<Veterinary> ListVeterinaries(){
+
         List<Veterinary> list = veterinaryRepository.findAll();
+        return list;
     }
 
+    // fix later modification
     @Override
-    public void modificationData(Integer AMKA){
+    public void modificationData(String AMKA){
         if(AMKA != null){
             Optional<ΜunicipalΕmployee> em =  municipalEmployeeRepository.findById(AMKA.toString());
 
             if(em != null){
 
                 deleteMunicipalEmployee(AMKA);
-                addMunicipalEmployee();
+                //addMunicipalEmployee();
             }
 
             Optional<Citizen>cit = citizenRepository.findById(AMKA.toString());
@@ -67,7 +79,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
             if (cit != null){
 
                 deleteCitizen(AMKA);
-                addCitizen();
+                //addCitizen();
             }
 
             Optional<Veterinary> vet = veterinaryRepository.findById(AMKA.toString());
@@ -75,7 +87,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
             if (vet != null){
 
                 deleteVeterinary(AMKA);
-                addVeterinary();
+                //addVeterinary();
             }
 
         }
@@ -83,38 +95,51 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public void addCitizen(){
-        Citizen citizen = new Citizen();
+    public ResponseEntity<Object> addCitizen(@RequestBody Citizen citizen){
+        Citizen savedCitizen = citizenRepository.save(citizen);
+        System.out.println("Citizen amka"+savedCitizen.getAMKA());
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaCitizen}").buildAndExpand(savedCitizen.getAMKA()).toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
     @Override
-    public void addMunicipalEmployee(){
-        ΜunicipalΕmployee municipalEmployee = new ΜunicipalΕmployee();
+    public ResponseEntity<Object> addMunicipalEmployee(@RequestBody ΜunicipalΕmployee municipalEmployee ){
+        ΜunicipalΕmployee savedΜunicipalΕmployee = municipalEmployeeRepository.save(municipalEmployee);
+        System.out.println("ΜunicipalΕmployee amka"+savedΜunicipalΕmployee.getAMKA());
+
+        URI location =ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaΜunicipalΕmployee}").buildAndExpand(savedΜunicipalΕmployee.getAMKA()).toUri();
+        return ResponseEntity.created(location).build();
     }
 
     @Override
-    public void addVeterinary(){
-        Veterinary veterinary = new Veterinary();
+    public ResponseEntity<Object> addVeterinary(@RequestBody Veterinary veterinary){
+        Veterinary savedVeterinary = veterinaryRepository.save(veterinary);
+        System.out.println("Veterinary amka"+savedVeterinary.getAMKA());
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaVeterinary}").buildAndExpand(savedVeterinary.getAMKA()).toUri();
+        return ResponseEntity.created(location).build();
     }
 
     @Override
-    public void deleteCitizen(Integer AMKA){
+    public void deleteCitizen(String AMKA){
         if (AMKA != null){
-            citizenRepository.deleteById(AMKA.toString());
+            citizenRepository.deleteById(AMKA);
         }
     }
 
     @Override
-    public void deleteMunicipalEmployee(Integer AMKA){
+    public void deleteMunicipalEmployee(String AMKA){
         if (AMKA != null){
-            municipalEmployeeRepository.deleteById(AMKA.toString());
+            municipalEmployeeRepository.deleteById(AMKA);
         }
     }
 
     @Override
-    public void deleteVeterinary(Integer AMKA){
+    public void deleteVeterinary(String AMKA){
         if (AMKA != null){
-            veterinaryRepository.deleteById(AMKA.toString());
+            veterinaryRepository.deleteById(AMKA);
         }
     }
 

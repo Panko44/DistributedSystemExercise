@@ -3,6 +3,7 @@ package gr.hua.dit.ds.DistributedSystem.entity;
 import javax.persistence.*;
 import java.util.List;
 
+
 @Entity
 @Table(name = "pet")
 public class Pet {

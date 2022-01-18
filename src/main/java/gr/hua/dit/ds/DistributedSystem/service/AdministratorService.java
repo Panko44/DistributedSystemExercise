@@ -1,32 +1,37 @@
 package gr.hua.dit.ds.DistributedSystem.service;
 
 import gr.hua.dit.ds.DistributedSystem.entity.Administrator;
+import gr.hua.dit.ds.DistributedSystem.entity.Citizen;
+import gr.hua.dit.ds.DistributedSystem.entity.Veterinary;
+import gr.hua.dit.ds.DistributedSystem.entity.ΜunicipalΕmployee;
 import gr.hua.dit.ds.DistributedSystem.repository.AdministratorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
 public interface AdministratorService {
 
-    public void PrintCitizens();
+    public List<Citizen> ListCitizens();
 
-    public void PrintMunicipalEmployees();
+    public List<ΜunicipalΕmployee> ListMunicipalEmployees();
 
-    public void PrintVeterinaries();
+    public List<Veterinary> ListVeterinaries();
 
-    public void modificationData(Integer AMKA);
+    public void modificationData(String AMKA);
 
-    public void addCitizen();
+    public ResponseEntity<Object> addCitizen(@RequestBody Citizen citizen);
 
-    public void addMunicipalEmployee();
+    public ResponseEntity<Object> addMunicipalEmployee(@RequestBody ΜunicipalΕmployee municipalEmployee);
 
-    public void addVeterinary();
+    public ResponseEntity<Object> addVeterinary(@RequestBody Veterinary veterinary);
 
-    public void deleteCitizen(Integer AMKA);
+    public void deleteCitizen(String AMKA);
 
-    public void deleteMunicipalEmployee(Integer AMKA);
+    public void deleteMunicipalEmployee(String AMKA);
 
-    public void deleteVeterinary(Integer AMKA);
+    public void deleteVeterinary(String AMKA);
 
     public void logIn();
 
