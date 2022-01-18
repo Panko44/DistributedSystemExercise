@@ -9,12 +9,18 @@ import gr.hua.dit.ds.DistributedSystem.repository.CitizenRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.MunicipalEmployeeRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.VeterinaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public abstract class AdministratorServiceImpl implements AdministratorService {
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Autowired
     private AdministratorRepository administratorRepository;

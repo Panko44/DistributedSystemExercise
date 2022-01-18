@@ -1,6 +1,7 @@
 package gr.hua.dit.ds.DistributedSystem.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "administrator")
@@ -17,6 +18,15 @@ public class Administrator {
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany(fetch=FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+    private List<Veterinary> veterinary;
+
+    @OneToMany(fetch=FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+    private List<Citizen> citizen;
+
+    @OneToMany(fetch=FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+    private List<ΜunicipalΕmployee> municipalEmployee;
 
     public Administrator() {
     }

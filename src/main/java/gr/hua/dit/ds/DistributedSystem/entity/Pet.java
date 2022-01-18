@@ -1,6 +1,7 @@
 package gr.hua.dit.ds.DistributedSystem.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "pet")
@@ -22,6 +23,32 @@ public class Pet {
 
     @Column(name = "amkaOwner")
     private String amkaOwmer;
+
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name="amkaOwmer")
+    private Citizen citizen;
+
+    @ManyToMany(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name= "vet_pet",
+            joinColumns= {@JoinColumn(name = "vet_amka")},
+            inverseJoinColumns= {@JoinColumn(name = "pet_microchip")}
+    )
+    private List<ΜunicipalΕmployee> ΜunicipalΕmployeeList;
+
+    @ManyToMany(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name="municipalEmployee_pet",
+            joinColumns=@JoinColumn(name="municipalEmployee_amka"),
+            inverseJoinColumns=@JoinColumn(name="pet_microchip"))
+    private List<Pet> petList;
+
+    private List<Veterinary> veterinaryList;
 
     public Pet(String race, String gender, String dateOfBirth, String numberOfMicrochip, String amkaOwmer) {
         this.race = race;

@@ -1,6 +1,7 @@
 package gr.hua.dit.ds.DistributedSystem.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "municipalΕmployee")
@@ -30,6 +31,24 @@ public class ΜunicipalΕmployee {
         this.password = password;
         this.email = email;
     }
+
+    @ManyToMany(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name="municipalEmployee_pet",
+            joinColumns=@JoinColumn(name="municipalEmployee_amka"),
+            inverseJoinColumns=@JoinColumn(name="pet_microchip"))
+    private List<Pet> petList;
+
+    @ManyToMany(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name="municipalEmployee_citizen",
+            joinColumns=@JoinColumn(name="municipalEmployee_amka"),
+            inverseJoinColumns=@JoinColumn(name="citizen_amka"))
+    private List<Citizen> citizenList;
 
     public ΜunicipalΕmployee() {
 
