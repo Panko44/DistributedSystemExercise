@@ -49,8 +49,6 @@ public class Pet {
             inverseJoinColumns=@JoinColumn(name="pet_microchip"))
     private List<Pet> petList;
 
-    private List<Veterinary> veterinaryList;
-
     public Pet(String race, String gender, String dateOfBirth, String numberOfMicrochip, String amkaOwmer) {
         this.race = race;
         this.gender = gender;
