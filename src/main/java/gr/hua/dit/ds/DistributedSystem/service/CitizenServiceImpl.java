@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.Optional;
 
@@ -28,6 +29,7 @@ public class CitizenServiceImpl implements CitizenService{
     private PetRepository petRepository;
 
     @Override
+    @Transactional
     public boolean logIn(String email, String password) {
         if (email != null){
             Optional<Citizen> citizen = citizenRepository.findById(email);
@@ -42,6 +44,7 @@ public class CitizenServiceImpl implements CitizenService{
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Object> addNewPet(@RequestBody Pet pet) {
         Pet savedPet = petRepository.save(pet);
         System.out.println("pet: number of microchip"+savedPet.getNumberOfMicrochip());
@@ -52,12 +55,14 @@ public class CitizenServiceImpl implements CitizenService{
 
     //Κάνει μια δήλωση ότι έχασε το κατοικίδιο του
     @Override
+    @Transactional
     public void lostPet() {
 
     }
 
     //Κάνει μια δήλωση ότι βρήκε ένα κατοικίδιο κάποιου άλλου ιδιοκτήτη
     @Override
+    @Transactional
     public void findPet() {
 
     }

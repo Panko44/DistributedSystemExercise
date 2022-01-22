@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +44,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public List<Citizen> ListCitizens(){
 
         List<Citizen> list = citizenRepository.findAll();
@@ -50,6 +52,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public List<ΜunicipalΕmployee> ListMunicipalEmployees(){
 
         List<ΜunicipalΕmployee> list = municipalEmployeeRepository.findAll();
@@ -57,6 +60,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public List<Veterinary> ListVeterinaries(){
 
         List<Veterinary> list = veterinaryRepository.findAll();
@@ -64,6 +68,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Object> modificationMunicipalEmployee(@RequestBody ΜunicipalΕmployee municipalEmployee, @PathVariable Integer AMKA){
         String amka= AMKA.toString();
         Optional<ΜunicipalΕmployee> municipalEmployeeOptional = municipalEmployeeRepository.findById(amka);
@@ -76,6 +81,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Object> modificationVeterinary(@RequestBody Veterinary veterinary,Integer AMKA){
         String amka= AMKA.toString();
         Optional<Veterinary> veterinaryOptional = veterinaryRepository.findById(amka);
@@ -88,6 +94,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Object> modificationCitizen(@RequestBody Citizen citizen, Integer AMKA){
         String amka= AMKA.toString();
         Optional<Citizen> citizenOptional = citizenRepository.findById(amka);
@@ -100,6 +107,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Object> addCitizen(@RequestBody Citizen citizen){
         Citizen savedCitizen = citizenRepository.save(citizen);
         System.out.println("Citizen amka"+savedCitizen.getAMKA());
@@ -110,6 +118,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Object> addMunicipalEmployee(@RequestBody ΜunicipalΕmployee municipalEmployee ){
         ΜunicipalΕmployee savedΜunicipalΕmployee = municipalEmployeeRepository.save(municipalEmployee);
         System.out.println("ΜunicipalΕmployee amka"+savedΜunicipalΕmployee.getAMKA());
@@ -119,6 +128,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Object> addVeterinary(@RequestBody Veterinary veterinary){
         Veterinary savedVeterinary = veterinaryRepository.save(veterinary);
         System.out.println("Veterinary amka"+savedVeterinary.getAMKA());
@@ -128,6 +138,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public void deleteCitizen(Integer AMKA){
         if (AMKA != null){
             String amka= AMKA.toString();
@@ -136,6 +147,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public void deleteMunicipalEmployee(Integer AMKA){
         if (AMKA != null){
             String amka= AMKA.toString();
@@ -144,6 +156,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public void deleteVeterinary(Integer AMKA){
         if (AMKA != null){
             String amka= AMKA.toString();
@@ -152,6 +165,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
+    @Transactional
     public boolean logIn(String email , String password){
         if(email != null){
             Optional<Administrator> admin = administratorRepository.findById(email);

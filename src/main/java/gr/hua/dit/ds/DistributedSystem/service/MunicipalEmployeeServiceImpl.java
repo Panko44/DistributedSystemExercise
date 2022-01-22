@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -20,6 +21,7 @@ public class MunicipalEmployeeServiceImpl implements MunicipalEmployeeService{
 
 
     @Override
+    @Transactional
     public boolean logIn(String email, String password) {
         if(email != null){
             Optional<ΜunicipalΕmployee> admin = municipalEmployeeRepository.findById(email);
@@ -35,6 +37,7 @@ public class MunicipalEmployeeServiceImpl implements MunicipalEmployeeService{
     }
 
     @Override
+    @Transactional
     public void notificationOwner() {
 
     }

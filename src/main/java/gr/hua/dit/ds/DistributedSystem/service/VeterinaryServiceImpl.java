@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -20,6 +21,7 @@ public class VeterinaryServiceImpl implements VeterinaryService{
 
 
     @Override
+    @Transactional
     public boolean logIn(String email, String password) {
         if(email != null){
             Optional<Veterinary> admin = veterinaryRepository.findById(email);
@@ -35,11 +37,13 @@ public class VeterinaryServiceImpl implements VeterinaryService{
     }
 
     @Override
+    @Transactional
     public void examinationStatement() {
 
     }
 
     @Override
+    @Transactional
     public void confirmationData() {
 
     }

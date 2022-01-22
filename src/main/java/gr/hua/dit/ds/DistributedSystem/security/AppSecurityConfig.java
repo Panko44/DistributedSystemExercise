@@ -17,40 +17,39 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(securedEnabled = true)
-
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
-                .usersByUsernameQuery("select email,password, enabled from user where email=?")
+                .usersByUsernameQuery("select email, password, enabled from user_security where email=?")
                 .authoritiesByUsernameQuery("select email, authority from authorities where email=?");
 
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login")
-                .loginProcessingUrl("/authUser").permitAll().and().logout().permitAll().and().exceptionHandling()
-                .accessDeniedPage("/403");
-
+        http.httpBasic().and().authorizeRequests()
+                .antMatchers("/**").hasRole("ADMIN")
+                .and().csrf().disable().headers().frameOptions().disable()
+                .and().formLogin().permitAll().and().logout().permitAll();
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/resources/**");
-
-        web.ignoring().antMatchers("/api/**");
+        web.ignoring().antMatchers("/");
 
     }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder;
     }
+
+
 }
