@@ -12,8 +12,8 @@ public interface CitizenService {
 
     public ResponseEntity<Object> addNewPet(@RequestBody Pet pet);
 
-    public void lostPet();
+    public void lostPet(@RequestBody Pet pet);
 
-    public void findPet();
+    public void findPet(@RequestBody Pet pet);
 
 }

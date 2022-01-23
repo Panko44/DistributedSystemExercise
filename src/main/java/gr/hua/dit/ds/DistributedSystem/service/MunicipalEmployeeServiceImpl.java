@@ -1,10 +1,14 @@
 package gr.hua.dit.ds.DistributedSystem.service;
 
 import gr.hua.dit.ds.DistributedSystem.entity.Administrator;
+import gr.hua.dit.ds.DistributedSystem.entity.Pet;
 import gr.hua.dit.ds.DistributedSystem.entity.ΜunicipalΕmployee;
 import gr.hua.dit.ds.DistributedSystem.repository.MunicipalEmployeeRepository;
+import gr.hua.dit.ds.DistributedSystem.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -19,6 +23,8 @@ public class MunicipalEmployeeServiceImpl implements MunicipalEmployeeService{
     @Autowired
     private MunicipalEmployeeRepository municipalEmployeeRepository;
 
+    @Autowired
+    private PetRepository petRepository;
 
     @Override
     @Transactional
@@ -38,7 +44,10 @@ public class MunicipalEmployeeServiceImpl implements MunicipalEmployeeService{
 
     @Override
     @Transactional
-    public void notificationOwner() {
-
+    public void notificationOwner(@PathVariable String numberOfMicrochip) {
+        Optional<Pet> optionalPet = petRepository.findById(numberOfMicrochip);
+        if(optionalPet.isPresent()){
+            // send email
+        }
     }
 }

@@ -56,14 +56,18 @@ public class CitizenServiceImpl implements CitizenService{
     //Κάνει μια δήλωση ότι έχασε το κατοικίδιο του
     @Override
     @Transactional
-    public void lostPet() {
-
+    public void lostPet(@RequestBody Pet pet) {
+        // εδώ θα έχω μια φόρμα
+        Optional<Pet> optionalPet = petRepository.findById(pet.getNumberOfMicrochip());
     }
 
     //Κάνει μια δήλωση ότι βρήκε ένα κατοικίδιο κάποιου άλλου ιδιοκτήτη
     @Override
     @Transactional
-    public void findPet() {
+    public void findPet(@RequestBody Pet pet) {
+        Optional<Pet> optionalPet = petRepository.findById(pet.getNumberOfMicrochip());
+        if (optionalPet.isPresent()){
 
+        }
     }
 }
