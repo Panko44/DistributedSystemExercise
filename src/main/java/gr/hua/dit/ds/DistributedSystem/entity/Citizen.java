@@ -14,7 +14,7 @@ public class Citizen {
     @Column(name = "age")
     private String age;
 
-    @Column(name = "fullName")
+    @Column(name = "fullname")
     private String fullName;
 
     @Id
@@ -22,7 +22,7 @@ public class Citizen {
     @Column(name = "AMKA")
     private int AMKA;
 
-    @Column(name = "municipalHouse")
+    @Column(name = "municipalhouse")
     private String municipalHouse;
 
     @Column(name = "password")
