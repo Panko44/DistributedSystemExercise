@@ -25,12 +25,6 @@ public class CitizenController {
         return "citizen_page";
     }
 
-    @ResponseBody
-    @GetMapping("/listssss")
-    List<Citizen> retrieveAllCitizens() {
-        return citizenRepository.findAll();
-    }
-
     @GetMapping("/NewPet")
     public String newPet(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
         model.addAttribute("name", name);

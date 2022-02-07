@@ -9,7 +9,5 @@ import java.util.List;
 @Repository
 public interface CitizenRepository extends JpaRepository<Citizen,String>{
 
-    @Override
-    List<Citizen> findAll();
 
 }

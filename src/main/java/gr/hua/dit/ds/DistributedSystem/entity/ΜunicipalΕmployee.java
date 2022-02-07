@@ -4,10 +4,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "municipalΕmployee")
+@Table(name = "municipalemployee")
 public class ΜunicipalΕmployee {
 
-    @Column(name = "fullName")
+    @Column(name = "fullname")
     private String fullName;
 
     @Id
@@ -15,7 +15,7 @@ public class ΜunicipalΕmployee {
     @Column(name = "AMKA")
     private int AMKA;
 
-    @Column(name = "municipalHouse")
+    @Column(name = "municipalhouse")
     private String municipalHouse;
 
     @Column(name = "password")

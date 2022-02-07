@@ -13,7 +13,7 @@
             font-size: 16px;
             margin: 4px 2px;
             cursor: pointer;
-            position: fixed;
+            position: relative;
         }
 
         .open-button {
@@ -32,7 +32,17 @@
         /* The popup form - hidden by default */
         .form-popup {
             display: none;
-            position: fixed;
+            position: relative;
+            bottom: 0;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+        }
+
+        /* The popup form - hidden by default */
+        .form-popup1 {
+            display: none;
+            position: relative;
             bottom: 0;
             right: 15px;
             border: 3px solid #f1f1f1;
@@ -82,7 +92,7 @@
         .form-container .btn:hover, .open-button:hover {
             opacity: 1;
         }
-
+		.button1 {background-color: #4CAF50;}
         .button2 {background-color: #4CAF50;}
     </style>
 </head>
@@ -91,8 +101,8 @@
 <h1>Welcome veterinary</h1>
 <p>Please choose an option:</p>
 
-<button class="open-button" onclick="openForm()">Examination statement</button>
-<button class="button button2" onclick="form()">Confirm examination</button>
+<button class="button button1" onclick="openForm()">Examination statement</button>
+<button class="button button2" onclick="openForm1()">Confirm examination</button>
 
 <div class="form-popup" id="openForm">
     <form action="/action_page.php" class="form-container">
@@ -118,8 +128,8 @@
     </form>
 </div>
 
-<div id="form">
-    <form action="/action_page.php">
+<div class="form-popup1" id="openForm1">
+    <form action="/action_page.php" class="form-container">
         <br><br><h1>Form Confirm examination</h1>
 
         <label for="text"><b>race</b></label><br>
@@ -138,6 +148,7 @@
         <input type="text" placeholder="Enter amka owner" name="amka owner" required><br>
 
         <button type="submit" class="btn">confirm</button>
+        <button type="button" class="btn cancel" onclick="closeForm2()">close</button>
     </form>
 </div>
 
@@ -150,9 +161,14 @@
         document.getElementById("openForm").style.display = "none";
     }
 
-    function form(){
-        document.getElementById("form").style.display = "block";
+    function openForm1(){
+        document.getElementById("openForm1").style.display = "block";
     }
+
+    function closeForm2() {
+        document.getElementById("openForm1").style.display = "none";
+    }
+
 </script>
 
 </body>

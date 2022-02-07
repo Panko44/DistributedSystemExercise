@@ -25,10 +25,10 @@
 <h1>Welcome Administator</h1>
 <p>Please choose an option:</p>
 
-<button class="button button1">Show users</button>
-<button class="button button2">Change user's data</button>
-<button class="button button3">Add a user</button>
-<button class="button button3">Delete a user</button>
+<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorShowList')"class="button button1">Show users</button>
+<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorModificationPage')"class="button button2">Change user's data</button>
+<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorAddUser')"class="button button3">Add a user</button>
+<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorDelete')" class="button button3">Delete a user</button>
 
 </body>
 </html>

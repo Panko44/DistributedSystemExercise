@@ -14,20 +14,20 @@ public class Pet {
     @Column(name = "gender")
     private String gender;
 
-    @Column(name = "dateOfBirth")
+    @Column(name = "dateofbirth")
     private String dateOfBirth;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "numberOfMicrochip")
+    @Column(name = "numberofmicrochip")
     private String numberOfMicrochip;
 
-    @Column(name = "amkaOwner")
+    @Column(name = "amkaowner")
     private String amkaOwmer;
 
     @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="amkaOwmer")
+    @JoinColumn(name="amkaowmer")
     private Citizen citizen;
 
     @ManyToMany(fetch=FetchType.LAZY,

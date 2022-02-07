@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "vet")
 public class Veterinary{
 
-    @Column(name = "fullName")
+    @Column(name = "fullname")
     private String fullName;
 
     @Id
@@ -15,7 +15,7 @@ public class Veterinary{
     @Column(name = "AMKA")
     private int AMKA;
 
-    @Column(name = "municipalHouse")
+    @Column(name = "municipalhouse")
     private String municipalHouse;
 
     @Column(name = "password")

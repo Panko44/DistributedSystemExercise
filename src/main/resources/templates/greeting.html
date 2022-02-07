@@ -1,22 +1,15 @@
-<!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
+<!DOCTYPE html>
+<html>
 <body>
-<p th:text="'Hello, ' + ${name} + '!'" />
 
-<div sec:authorize="hasRole('USER')">Text visible to user.</div>
-<div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
-<div sec:authorize="isAuthenticated()">
-    <div>
-        User: <span sec:authentication="name">NOT FOUND</span>
-        Spring Roles: <span sec:authentication="principal.authorities">NOT FOUND</span>
-    </div>
+<h1>Greetings</h1>
 
-</div>
+<p>Welcome to our app that deals with managing pets. If you want to keep using the app please login with your credentials.</p>
+
+<button onClick="parent.open('http://localhost:8000/login')" type="button">Login!</button>
+
+</body>
+</html>
 
 
 </body>
