@@ -98,7 +98,8 @@
 
         .button1 {background-color: #4CAF50;} /* Green */
         .button2 {background-color: #4CAF50;}
-        .button3 {background-color: #4CAF50;position: fixed;cursor: pointer;}
+        .button3 {background-color: #4CAF50;}
+        .button4 {background-color: #4CAF50;}
     </style>
 </head>
 <body>
@@ -109,6 +110,8 @@
 <button onClick="parent.open('http://localhost:8000/CitizenController/NewPet')" class="button button1">New pet</button>
 <button class="button button2" onclick="openForm()">I lost my pet</button>
 <button class="button button3" onclick="openForm1()">I found a pet</button>
+<button onClick="parent.open('http://localhost:8000/login?logout')" class="button button4">Logout</button>
+
 
 <div class="form-popup" id="openForm">
     <form action="/action_page.php" class="form-container"></form>

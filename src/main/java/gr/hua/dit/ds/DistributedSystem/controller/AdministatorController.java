@@ -29,6 +29,8 @@ public class AdministatorController {
     @Autowired
     private VeterinaryRepository veterinaryRepository;
 
+    private AdministratorServiceImpl administratorServiceImpl;
+
     @GetMapping("/AdministratorPage")
     public String administratorPage(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
         model.addAttribute("name", name);
@@ -75,6 +77,14 @@ public class AdministatorController {
     @GetMapping("/ShowVeterinaries")
     List<Veterinary> retrieveAllVeterinaries() {
         return veterinaryRepository.findAll();
+    }
+
+    @GetMapping("/users")
+    public String listUsers(Model model) {
+        List<Citizen> listUsers = administratorServiceImpl.ListCitizens();
+        model.addAttribute("listUsers", listUsers);
+
+        return "users";
     }
 
 }

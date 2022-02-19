@@ -36,7 +36,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().and().authorizeRequests()
                 .antMatchers("/","/api","/login").permitAll()
                 .antMatchers("/AdministratorController/**").hasRole("ADMIN")
-                .antMatchers("/CitizenController/**","MunicipalEmployeeController/**","VeterinaryController/**").hasRole("USER")
+                .antMatchers("/CitizenController/**","/MunicipalEmployeeController/**","/VeterinaryController/**").hasRole("USER")
                 .anyRequest().authenticated()
                 .and().csrf().disable().headers().frameOptions().disable()
                 .and().formLogin().permitAll().and().logout().invalidateHttpSession(true)

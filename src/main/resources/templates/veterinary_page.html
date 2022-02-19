@@ -94,6 +94,7 @@
         }
 		.button1 {background-color: #4CAF50;}
         .button2 {background-color: #4CAF50;}
+        .button2 {background-color: #4CAF50;}
     </style>
 </head>
 <body>
@@ -103,6 +104,7 @@
 
 <button class="button button1" onclick="openForm()">Examination statement</button>
 <button class="button button2" onclick="openForm1()">Confirm examination</button>
+<button onClick="parent.open('http://localhost:8000/login?logout')" class="button button3">Logout</button>
 
 <div class="form-popup" id="openForm">
     <form action="/action_page.php" class="form-container">
