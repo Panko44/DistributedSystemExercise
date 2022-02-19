@@ -10,10 +10,13 @@ import gr.hua.dit.ds.DistributedSystem.repository.VeterinaryRepository;
 import gr.hua.dit.ds.DistributedSystem.service.AdministratorService;
 import gr.hua.dit.ds.DistributedSystem.service.AdministratorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @Controller
@@ -63,7 +66,7 @@ public class AdministatorController {
 
     @ResponseBody
     @GetMapping("/ShowCitizens")
-    List<Citizen> reretrieveAllCitizens() {
+    List<Citizen> retrieveAllCitizens() {
         return citizenRepository.findAll();
     }
 
@@ -79,12 +82,24 @@ public class AdministatorController {
         return veterinaryRepository.findAll();
     }
 
-    @GetMapping("/users")
-    public String listUsers(Model model) {
-        List<Citizen> listUsers = administratorServiceImpl.ListCitizens();
-        model.addAttribute("listUsers", listUsers);
+//    @ResponseBody
+//    @PostMapping("/AdministratorAddUser/Citizen")
+//    public ResponseEntity<Citizen> addCitizen(@RequestBody Citizen citizen){
+//        Citizen savedCitizen = citizenRepository.save(citizen);
+//        System.out.println("Citizen amka"+savedCitizen.getAMKA());
+//
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaCitizen}").buildAndExpand(savedCitizen.getAMKA()).toUri();
+//
+//        return ResponseEntity.created(location).build();
+//    }
 
-        return "users";
-    }
+
+//    @GetMapping("/users")
+//    public String listUsers(Model model) {
+//        List<Citizen> listUsers = administratorServiceImpl.ListCitizens();
+//        model.addAttribute("listUsers", listUsers);
+//
+//        return "citizen";
+//    }
 
 }
