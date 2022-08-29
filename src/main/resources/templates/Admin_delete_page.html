@@ -16,13 +16,13 @@
 </style>
 <body>
 <div class="form-popup" id="myDelCit">
-    <form action="/action_page.php">
+    <form>
         <h1>Delete Citizen</h1>
 
         <label for="text"><b>Amka</b></label>
         <input type="text" placeholder="Enter amka" name="amka" required>
 
-        <button type="submit" class="button">Delete</button>
+        <button th:href="@{'/AdministratorDeleteCitizen/'+${AMKA}}" type="submit" class="button">Delete</button>
     </form>
 </div>
 

@@ -37,7 +37,7 @@ public class Administrator {
         this.email = email;
     }
 
-    public String getAmin_id() {
+    public String getAdmin_id() {
         return admin_id;
     }
 
@@ -49,7 +49,7 @@ public class Administrator {
         return email;
     }
 
-    public void setAmin_id(String amin_id) {
+    public void setAdmin_id(String amin_id) {
         this.admin_id = amin_id;
     }
 

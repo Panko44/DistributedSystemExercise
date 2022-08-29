@@ -1,7 +1,8 @@
 CREATE DATABASE IF NOT EXISTS `DSExercise`;
 USE `DSExercise`;
-DROP TABLE `municipalemployee`;
+DROP TABLE `user_security`;
 SELECT * FROM `authorities`;
+UPDATE `user_security` SET `password` = '$2a$12$byuEdx6ktDHX7c8LHm4lzuDj5qeHzf.phOdPFZVy3qraG01FceJjG' WHERE email = "root";
 
 
 CREATE TABLE `administrator` (
@@ -59,25 +60,24 @@ PRIMARY KEY (`AMKA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `administrator` VALUES
-(1,'1234','david@hua.gr'),
-(2,'12345','john@hua.gr'),
-(3,'123456','ajay@hua.gr');
+(1,'12345','argiris@hua.gr'),
+(2,'12345','mara@hua.gr');
 
 INSERT INTO `citizen` values
-(0123456789,'Panagiotis','Patra','12345','panosmemail','kapou',13),
-(1234567890,'Rafail','Kalamata','1234','rafailemail','kapou allou',14);
+(0123456789,'Panagiotis','Patra','1234','panos@hua.gr','kapou',13),
+(1234567890,'Rafail','Kalamata','1234','rafail@hua.gr','kapou allou',14);
 
 INSERT INTO `vet` values
-(01,'Panagiotis','Patra','12345','panosmemail',13),
-(12,'Rafail','Kalamata','1234','rafailemail',14);
+(01,'Giorgos','Athina','1234','giorgos@hua.gr',13),
+(12,'Maria','Korinthos','1234','maria@hua.gr',14);
 
 INSERT INTO `municipalEmployee` values
-(1,'Panagiotis','Patra','12345','panosmemail'),
-(2,'Rafail','Kalamata','1234','rafailemail');
+(1,'Mhtsos','Thessaloniki','1234','mhtsos@hua.gr'),
+(2,'Xristina','Volos','1234','xristina@hua.gr');
 
 INSERT INTO `pet` values
-('123','pitbull','arseniko','kapote','0123456789'),
-('1234','rontvailer','thhlyko','pote','1234567890');
+('1234','pitbull','arseniko','kapote','0123456789'),
+('12345','rontvailer','thhlyko','pote','1234567890');
 
 CREATE TABLE IF NOT EXISTS `user_security` (
  `email` varchar(50) UNIQUE NOT NULL,
@@ -94,12 +94,24 @@ CREATE TABLE IF NOT EXISTS `authorities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `user_security` (`email`, `password`, `enabled`) VALUES
-   ('argiris', '$2a$04$DR/f..s1siWJc8Xg3eJgpeB28a4V6kYpnkMPeOuq4rLQ42mJUYFGC', 1),
-   ('root', '$2a$04$DR/f..s1siWJc8Xg3eJgpeB28a4V6kYpnkMPeOuq4rLQ42mJUYFGC', 1);
+   ('panos@hua.gr', '$2a$12$iC8.o5Tv7rCHlCja5sdl0u.Ew25HojnR1RdbF6h5uLsIUcAg.miSi', 1),
+   ('rafail@hua.gr', '$2a$12$iC8.o5Tv7rCHlCja5sdl0u.Ew25HojnR1RdbF6h5uLsIUcAg.miSi', 1),
+   ('giorgos@hua.gr', '$2a$12$iC8.o5Tv7rCHlCja5sdl0u.Ew25HojnR1RdbF6h5uLsIUcAg.miSi', 1),
+   ('maria@hua.gr', '$2a$12$iC8.o5Tv7rCHlCja5sdl0u.Ew25HojnR1RdbF6h5uLsIUcAg.miSi', 1),
+   ('mhtsos@hua.gr', '$2a$12$iC8.o5Tv7rCHlCja5sdl0u.Ew25HojnR1RdbF6h5uLsIUcAg.miSi', 1),
+   ('xristina@hua.gr', '$2a$12$iC8.o5Tv7rCHlCja5sdl0u.Ew25HojnR1RdbF6h5uLsIUcAg.miSi', 1),			/* pass for all other users = 1234 */
+   ('argiris@hua.gr', '$2a$12$byuEdx6ktDHX7c8LHm4lzuDj5qeHzf.phOdPFZVy3qraG01FceJjG', 1),
+   ('mara@hua.gr', '$2a$12$byuEdx6ktDHX7c8LHm4lzuDj5qeHzf.phOdPFZVy3qraG01FceJjG', 1);			/* pass for admins = 12345 */
 
 INSERT INTO `authorities` (`email`, `authority`) VALUES
-   ('root', 'ROLE_ADMIN'),
-   ('argiris', 'ROLE_USER');
+   ('argiris@hua.gr', 'ROLE_ADMIN'),
+   ('mara@hua.gr', 'ROLE_ADMIN'),
+   ('panos@hua.gr', 'ROLE_USER'),
+   ('rafail@hua.gr', 'ROLE_USER'),
+   ('giorgos@hua.gr', 'ROLE_USER'),
+   ('maria@hua.gr', 'ROLE_USER'),
+   ('mhtsos@hua.gr', 'ROLE_USER'),
+   ('xristina@hua.gr', 'ROLE_USER');
    
 CREATE TABLE `vet_pet` (
 `vet_amka` int(11) NOT NULL,

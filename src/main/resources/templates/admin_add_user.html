@@ -81,7 +81,7 @@
 
 </style>
 <div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
+  <form th:action="@{/AdministratorController/AdministratorAddUser/Citizen}" method=”post” th:object="${citizen}" class="form-container">
     <h1>New Citizen</h1>
 
     <label for="text"><b>Address</b></label>
@@ -105,7 +105,7 @@
     <label for="text"><b>email</b></label>
     <input type="text" placeholder="Enter email" name="email" required>
 
-    <button type="submit" class="btn">Submit</button>
+    <button  type="submit" class="btn">Submit</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>

@@ -17,13 +17,13 @@
 
 <body>
 <div id="myModCit">
-    <form action="/action_page.php">
+    <form>
         <h1>Modification Citizen</h1>
 
-        <label for="text"><b>Amka</b></label>
+        <label><b>Amka</b></label>
         <input type="text" placeholder="Enter amka" name="amka" required>
 
-        <button type="submit" class="button">Modify</button>
+        <button th:href="@{'/AdministratorModificationPage/Citizen/'+${amka}" type="submit" class="button">Modify</button>
     </form>
 </div>
 

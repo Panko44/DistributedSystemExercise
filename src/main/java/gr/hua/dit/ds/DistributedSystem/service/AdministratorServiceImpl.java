@@ -10,6 +10,7 @@ import gr.hua.dit.ds.DistributedSystem.repository.MunicipalEmployeeRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.VeterinaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,7 +47,6 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     @Override
     @Transactional
     public List<Citizen> ListCitizens(){
-
         List<Citizen> list = citizenRepository.findAll();
         return list;
     }
@@ -93,28 +93,23 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
         return ResponseEntity.noContent().build();
     }
 
-    @Override
-    @Transactional
-    public ResponseEntity<Object> modificationCitizen(@RequestBody Citizen citizen, Integer AMKA){
-        String amka= AMKA.toString();
-        Optional<Citizen> citizenOptional = citizenRepository.findById(amka);
-        if(!citizenOptional.isPresent()){
-            return ResponseEntity.notFound().build();
-        }
-        citizen.setAMKA(AMKA);
-        citizenRepository.save(citizen);
-        return ResponseEntity.noContent().build();
-    }
+//    @Override
+//    @Transactional
+//    public ResponseEntity<Object> modificationCitizen(@RequestBody Citizen citizen, Integer AMKA){
+//        String amka= AMKA.toString();
+//        Optional<Citizen> citizenOptional = citizenRepository.findById(amka);
+//        if(!citizenOptional.isPresent()){
+//            return ResponseEntity.notFound().build();
+//        }
+//        citizen.setAMKA(AMKA);
+//        citizenRepository.save(citizen);
+//        return ResponseEntity.noContent().build();
+//    }
 
     @Override
     @Transactional
-    public ResponseEntity<Object> addCitizen(@RequestBody Citizen citizen){
+    public void saveCitizen(@RequestBody Citizen citizen){
         Citizen savedCitizen = citizenRepository.save(citizen);
-        System.out.println("Citizen amka"+savedCitizen.getAMKA());
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaCitizen}").buildAndExpand(savedCitizen.getAMKA()).toUri();
-
-        return ResponseEntity.created(location).build();
     }
 
     @Override
@@ -140,10 +135,10 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     @Override
     @Transactional
     public void deleteCitizen(Integer AMKA){
-        if (AMKA != null){
+        //if (AMKA != null){
             String amka= AMKA.toString();
             citizenRepository.deleteById(amka);
-        }
+        //}
     }
 
     @Override
@@ -179,4 +174,12 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
         }
         return false;
     }
+
+    public Citizen get(Integer AMKA) {
+        String amka= AMKA.toString();
+        Optional<Citizen> result = citizenRepository.findById(amka);
+        return result.get();
+    }
+
+
 }

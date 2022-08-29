@@ -34,6 +34,8 @@ public interface AdministratorService {
 
     public void deleteCitizen(Integer AMKA);
 
+    public void saveCitizen(Citizen citizen);
+
     public void deleteMunicipalEmployee(Integer AMKA);
 
     public void deleteVeterinary(Integer AMKA);

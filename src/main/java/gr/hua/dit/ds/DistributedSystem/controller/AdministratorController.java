@@ -1,13 +1,11 @@
 package gr.hua.dit.ds.DistributedSystem.controller;
 
-import gr.hua.dit.ds.DistributedSystem.entity.Administrator;
 import gr.hua.dit.ds.DistributedSystem.entity.Citizen;
 import gr.hua.dit.ds.DistributedSystem.entity.Veterinary;
 import gr.hua.dit.ds.DistributedSystem.repository.AdministratorRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.CitizenRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.MunicipalEmployeeRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.VeterinaryRepository;
-import gr.hua.dit.ds.DistributedSystem.service.AdministratorService;
 import gr.hua.dit.ds.DistributedSystem.service.AdministratorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/AdministratorController")
-public class AdministatorController {
+public class AdministratorController {
 
     @Autowired
     private AdministratorRepository administratorRepository;
@@ -43,6 +41,13 @@ public class AdministatorController {
         return "Admin_delete_page";
     }
 
+    @RequestMapping(value = "/AdministratorDeletePage/Citizen/{AMKA}", method = { RequestMethod.GET, RequestMethod.POST })
+    public String administratorDeleteCitizen(@PathVariable("AMKA") Integer AMKA) {
+        administratorServiceImpl.deleteCitizen(AMKA);
+        System.out.println("Citizen amka"+AMKA);
+        return "redirect:/AdministratorController/AdministratorPage";
+    }
+
     @GetMapping("/AdministratorShowList")
     public String administratorShowList(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
         model.addAttribute("name", name);
@@ -61,11 +66,11 @@ public class AdministatorController {
         return "admin_add_user";
     }
 
-    @ResponseBody
-    @GetMapping("/ShowCitizens")
-    List<Citizen> reretrieveAllCitizens() {
-        return citizenRepository.findAll();
-    }
+//    @ResponseBody
+//    @GetMapping("/ShowCitizens")
+//    List<Citizen> retrieveAllCitizens() {
+//        return citizenRepository.findAll();
+//    }
 
     @ResponseBody
     @GetMapping("/ShowMunicipalEmployees")
@@ -79,12 +84,31 @@ public class AdministatorController {
         return veterinaryRepository.findAll();
     }
 
-    @GetMapping("/users")
-    public String listUsers(Model model) {
-        List<Citizen> listUsers = administratorServiceImpl.ListCitizens();
-        model.addAttribute("listUsers", listUsers);
 
-        return "users";
+    @RequestMapping(value = "/AdministratorAddUser/Citizen", method = { RequestMethod.GET, RequestMethod.POST })
+    public String addCitizen(@ModelAttribute("citizen") Citizen citizen){
+        Citizen savedCitizen = citizenRepository.save(citizen);
+        System.out.println("Citizen amka"+savedCitizen.getAMKA());
+
+        //URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaCitizen}").buildAndExpand(savedCitizen.getAMKA()).toUri();
+
+        //return ResponseEntity.created(location).build();
+        return "redirect:/AdministratorController/AdministratorPage";
+    }
+
+    @RequestMapping(value = "/AdministratorModificationPage/Citizen/{AMKA}", method = { RequestMethod.GET, RequestMethod.POST })
+    public String showEditForm(@PathVariable("AMKA") Integer AMKA, Model model){
+        //String amka= AMKA.toString();
+        Citizen citizen = administratorServiceImpl.get(AMKA);
+        model.addAttribute("citizen", citizen);
+        return "admin_add_user";
+    }
+
+    @GetMapping("/ShowCitizens")
+    public String showCitizenList(Model model){
+        List<Citizen> listCitizen = citizenRepository.findAll();
+        model.addAttribute("listCitizen", listCitizen);
+        return "Admin_show_list";
     }
 
 }
