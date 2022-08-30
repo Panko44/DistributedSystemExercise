@@ -31,19 +31,19 @@ public class Citizen {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy="citizen",
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
-    private List<Pet> petList;
+//    @OneToMany(mappedBy="citizen",
+//            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+//                    CascadeType.DETACH, CascadeType.REFRESH})
+//    private List<Pet> petList;
 
-    @ManyToMany(fetch=FetchType.LAZY,
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(
-            name="municipalEmployee_citizen",
-            joinColumns=@JoinColumn(name="municipalEmployee_amka"),
-            inverseJoinColumns=@JoinColumn(name="citizen_amka"))
-    private List<ΜunicipalΕmployee> ΜunicipalΕmployeeList;
+//    @ManyToMany(fetch=FetchType.LAZY,
+//            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+//                    CascadeType.DETACH, CascadeType.REFRESH})
+//    @JoinTable(
+//            name="municipalEmployee_citizen",
+//            joinColumns=@JoinColumn(name="municipalEmployee_amka"),
+//            inverseJoinColumns=@JoinColumn(name="citizen_amka"))
+//    private List<MunicipalEmployee> ΜunicipalΕmployeeList;
 
     public Citizen(String address, String age, String fullName, int AMKA, String municipalHouse, String password, String email) {
         this.address = address;

@@ -23,12 +23,12 @@ public class Pet {
     private String numberOfMicrochip;
 
     @Column(name = "amkaowner")
-    private String amkaOwmer;
+    private String amkaOwner;
 
-    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="amkaowmer")
-    private Citizen citizen;
+//    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+//            CascadeType.DETACH, CascadeType.REFRESH})
+//    @JoinColumn(name="amkaowner")
+//    private Citizen citizen;
 
     @ManyToMany(fetch=FetchType.LAZY,
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -38,7 +38,7 @@ public class Pet {
             joinColumns= {@JoinColumn(name = "vet_amka")},
             inverseJoinColumns= {@JoinColumn(name = "pet_microchip")}
     )
-    private List<ΜunicipalΕmployee> ΜunicipalΕmployeeList;
+    private List<MunicipalEmployee> MunicipalEmployeeList;
 
     @ManyToMany(fetch=FetchType.LAZY,
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -49,12 +49,12 @@ public class Pet {
             inverseJoinColumns=@JoinColumn(name="pet_microchip"))
     private List<Pet> petList;
 
-    public Pet(String race, String gender, String dateOfBirth, String numberOfMicrochip, String amkaOwmer) {
+    public Pet(String race, String gender, String dateOfBirth, String numberOfMicrochip, String amkaOwner) {
         this.race = race;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.numberOfMicrochip = numberOfMicrochip;
-        this.amkaOwmer = amkaOwmer;
+        this.amkaOwner = amkaOwner;
     }
 
     public Pet(){}
@@ -75,8 +75,8 @@ public class Pet {
         return numberOfMicrochip;
     }
 
-    public String getAmkaOwmer() {
-        return amkaOwmer;
+    public String getAmkaOwner() {
+        return amkaOwner;
     }
 
     public void setRace(String race) {
@@ -95,8 +95,8 @@ public class Pet {
         this.numberOfMicrochip = numberOfMicrochip;
     }
 
-    public void setAmkaOwmer(String amkaOwmer) {
-        this.amkaOwmer = amkaOwmer;
+    public void setAmkaOwner(String amkaOwner) {
+        this.amkaOwner = amkaOwner;
     }
 
     @Override
@@ -106,7 +106,7 @@ public class Pet {
                 ", gender='" + gender + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", numberOfMicrochip='" + numberOfMicrochip + '\'' +
-                ", amkaOwmer='" + amkaOwmer + '\'' +
+                ", amkaOwner='" + amkaOwner + '\'' +
                 '}';
     }
 }

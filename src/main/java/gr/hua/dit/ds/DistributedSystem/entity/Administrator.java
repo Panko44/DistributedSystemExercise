@@ -26,7 +26,7 @@ public class Administrator {
     private List<Citizen> citizen;
 
     @OneToMany(fetch=FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-    private List<ΜunicipalΕmployee> municipalEmployee;
+    private List<MunicipalEmployee> municipalEmployee;
 
     public Administrator() {
     }

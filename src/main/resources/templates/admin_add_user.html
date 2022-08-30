@@ -1,4 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+
 <html>
+
 <body>
 <h1>Select what kind of user you want to add</h1>
 
@@ -81,7 +95,9 @@
 
 </style>
 <div class="form-popup" id="myForm">
-  <form th:action="@{/AdministratorController/AdministratorAddUser/Citizen}" method=”post” th:object="${citizen}" class="form-container">
+
+  <form action="#" th:action="@{/AdministratorController/AdministratorAddUser/Citizen}"  th:object="${citizen}" method=”post” class="form-container">
+
     <h1>New Citizen</h1>
 
     <label for="text"><b>Address</b></label>
@@ -90,14 +106,14 @@
     <label for="text"><b>age</b></label>
     <input type="text" placeholder="Enter age" name="age" required>
 
-    <label for="text"><b>fullname</b></label>
-    <input type="text" placeholder="Enter fullname" name="fullname" required>
+    <label for="text"><b>fullName</b></label>
+    <input type="text" placeholder="Enter fullName" name="fullName" required>
 
     <label for="text"><b>AMKA</b></label>
-    <input type="text" placeholder="Enter AMKA" name="amka" required>
+    <input type="text" placeholder="Enter AMKA" name="AMKA" required>
 
-    <label for="text"><b>municipalhouse</b></label>
-    <input type="text" placeholder="Enter municipalhouse" name="municipalhouse" required>
+    <label for="text"><b>municipalHouse</b></label>
+    <input type="text" placeholder="Enter municipalHouse" name="municipalHouse" required>
 
     <label for="text"><b>password</b></label>
     <input type="text" placeholder="Enter password" name="password" required>
@@ -109,6 +125,36 @@
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>
+
+<!--<div class="container">-->
+<!--  <h1>Employee Management System</h1>-->
+<!--  <hr>-->
+<!--  <h2>Save Employee</h2>-->
+
+<!--  <form action="#" th:action="@{/AdministratorController/AdministratorAddUser/Citizen}" th:object="${citizen}"-->
+<!--        method="POST">-->
+<!--    <input type="text" th:field="*{address}"-->
+<!--           placeholder="Employee address" class="form-control mb-4 col-4">-->
+
+<!--    <input type="text" th:field="*{age}"-->
+<!--           placeholder="Employee age" class="form-control mb-4 col-4">-->
+
+<!--    <input type="text" th:field="*{fullName}"-->
+<!--           placeholder="Employee fullNAme" class="form-control mb-4 col-4">-->
+<!--    <input type="text" th:field="*{AMKA}"-->
+<!--           placeholder="Employee AMKA" class="form-control mb-4 col-4">-->
+<!--    <input type="text" th:field="*{municipalHouse}"-->
+<!--           placeholder="Employee municipal" class="form-control mb-4 col-4">-->
+<!--    <input type="text" th:field="*{password}"-->
+<!--           placeholder="Employee password" class="form-control mb-4 col-4">-->
+<!--    <input type="text" th:field="*{email}"-->
+<!--           placeholder="Employee Email" class="form-control mb-4 col-4">-->
+
+<!--    <button type="submit" class="btn btn-info col-2"> Save Employee</button>-->
+<!--  </form>-->
+
+<!--  <hr>-->
+<!--</div>-->
 
 <div class="form-popup" id="openFormEmployee">
   <form action="/action_page.php" class="form-container">

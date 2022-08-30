@@ -3,7 +3,7 @@ package gr.hua.dit.ds.DistributedSystem.service;
 import gr.hua.dit.ds.DistributedSystem.entity.Administrator;
 import gr.hua.dit.ds.DistributedSystem.entity.Citizen;
 import gr.hua.dit.ds.DistributedSystem.entity.Veterinary;
-import gr.hua.dit.ds.DistributedSystem.entity.ΜunicipalΕmployee;
+import gr.hua.dit.ds.DistributedSystem.entity.MunicipalEmployee;
 import gr.hua.dit.ds.DistributedSystem.repository.AdministratorRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.CitizenRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.MunicipalEmployeeRepository;
@@ -53,9 +53,9 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     @Transactional
-    public List<ΜunicipalΕmployee> ListMunicipalEmployees(){
+    public List<MunicipalEmployee> ListMunicipalEmployees(){
 
-        List<ΜunicipalΕmployee> list = municipalEmployeeRepository.findAll();
+        List<MunicipalEmployee> list = municipalEmployeeRepository.findAll();
         return list;
     }
 
@@ -69,9 +69,9 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     @Transactional
-    public ResponseEntity<Object> modificationMunicipalEmployee(@RequestBody ΜunicipalΕmployee municipalEmployee, @PathVariable Integer AMKA){
+    public ResponseEntity<Object> modificationMunicipalEmployee(@RequestBody MunicipalEmployee municipalEmployee, @PathVariable Integer AMKA){
         String amka= AMKA.toString();
-        Optional<ΜunicipalΕmployee> municipalEmployeeOptional = municipalEmployeeRepository.findById(amka);
+        Optional<MunicipalEmployee> municipalEmployeeOptional = municipalEmployeeRepository.findById(amka);
         if(!municipalEmployeeOptional.isPresent()){
             return ResponseEntity.notFound().build();
         }
@@ -114,8 +114,8 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     @Transactional
-    public ResponseEntity<Object> addMunicipalEmployee(@RequestBody ΜunicipalΕmployee municipalEmployee ){
-        ΜunicipalΕmployee savedΜunicipalΕmployee = municipalEmployeeRepository.save(municipalEmployee);
+    public ResponseEntity<Object> addMunicipalEmployee(@RequestBody MunicipalEmployee municipalEmployee ){
+        MunicipalEmployee savedΜunicipalΕmployee = municipalEmployeeRepository.save(municipalEmployee);
         System.out.println("ΜunicipalΕmployee amka"+savedΜunicipalΕmployee.getAMKA());
 
         URI location =ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaΜunicipalΕmployee}").buildAndExpand(savedΜunicipalΕmployee.getAMKA()).toUri();
@@ -135,10 +135,21 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
     @Override
     @Transactional
     public void deleteCitizen(Integer AMKA){
-        //if (AMKA != null){
+        System.out.println("null" +AMKA);
+        if (AMKA == 123456789){
+            System.out.println("Citizen4 amka" +AMKA);
             String amka= AMKA.toString();
-            citizenRepository.deleteById(amka);
-        //}
+            citizenRepository.deleteById(AMKA);
+        } else {
+            System.out.println("null" +AMKA);
+        }
+        try {
+            System.out.println("First character: ");
+        }
+        catch(NullPointerException e) {
+            System.out.println("NullPointerException thrown!");
+        }
+
     }
 
     @Override
@@ -177,7 +188,7 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
 
     public Citizen get(Integer AMKA) {
         String amka= AMKA.toString();
-        Optional<Citizen> result = citizenRepository.findById(amka);
+        Optional<Citizen> result = citizenRepository.findById(AMKA);
         return result.get();
     }
 

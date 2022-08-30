@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public interface CitizenService {
 
-    public boolean logIn(String email , String password);
+    //public boolean logIn(String email , String password);
 
     public ResponseEntity<Object> addNewPet(@RequestBody Pet pet);
 

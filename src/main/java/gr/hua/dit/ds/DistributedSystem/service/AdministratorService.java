@@ -2,8 +2,9 @@ package gr.hua.dit.ds.DistributedSystem.service;
 
 import gr.hua.dit.ds.DistributedSystem.entity.Administrator;
 import gr.hua.dit.ds.DistributedSystem.entity.Citizen;
+import gr.hua.dit.ds.DistributedSystem.entity.MunicipalEmployee;
 import gr.hua.dit.ds.DistributedSystem.entity.Veterinary;
-import gr.hua.dit.ds.DistributedSystem.entity.ΜunicipalΕmployee;
+import gr.hua.dit.ds.DistributedSystem.entity.MunicipalEmployee;
 import gr.hua.dit.ds.DistributedSystem.repository.AdministratorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +17,11 @@ public interface AdministratorService {
 
     public List<Citizen> ListCitizens();
 
-    public List<ΜunicipalΕmployee> ListMunicipalEmployees();
+    public List<MunicipalEmployee> ListMunicipalEmployees();
 
     public List<Veterinary> ListVeterinaries();
 
-    public ResponseEntity<Object> modificationMunicipalEmployee(@RequestBody ΜunicipalΕmployee municipalEmployee, @PathVariable Integer AMKA);
+    public ResponseEntity<Object> modificationMunicipalEmployee(@RequestBody MunicipalEmployee municipalEmployee, @PathVariable Integer AMKA);
 
     public ResponseEntity<Object> modificationVeterinary(@RequestBody Veterinary veterinary,@PathVariable Integer AMKA);
 
@@ -28,7 +29,7 @@ public interface AdministratorService {
 
     public ResponseEntity<Object> addCitizen(@RequestBody Citizen citizen);
 
-    public ResponseEntity<Object> addMunicipalEmployee(@RequestBody ΜunicipalΕmployee municipalEmployee);
+    public ResponseEntity<Object> addMunicipalEmployee(@RequestBody MunicipalEmployee municipalEmployee);
 
     public ResponseEntity<Object> addVeterinary(@RequestBody Veterinary veterinary);
 

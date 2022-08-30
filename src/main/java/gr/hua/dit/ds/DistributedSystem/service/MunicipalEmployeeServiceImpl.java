@@ -1,8 +1,9 @@
 package gr.hua.dit.ds.DistributedSystem.service;
 
 import gr.hua.dit.ds.DistributedSystem.entity.Administrator;
+import gr.hua.dit.ds.DistributedSystem.entity.MunicipalEmployee;
 import gr.hua.dit.ds.DistributedSystem.entity.Pet;
-import gr.hua.dit.ds.DistributedSystem.entity.ΜunicipalΕmployee;
+import gr.hua.dit.ds.DistributedSystem.entity.MunicipalEmployee;
 import gr.hua.dit.ds.DistributedSystem.repository.MunicipalEmployeeRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class MunicipalEmployeeServiceImpl implements MunicipalEmployeeService{
     @Transactional
     public boolean logIn(String email, String password) {
         if(email != null){
-            Optional<ΜunicipalΕmployee> admin = municipalEmployeeRepository.findById(email);
+            Optional<MunicipalEmployee> admin = municipalEmployeeRepository.findById(email);
             if(admin != null){
                 if(admin.get().getPassword() == password){
                     return true;

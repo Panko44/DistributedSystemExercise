@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "municipalemployee")
-public class ΜunicipalΕmployee {
+public class MunicipalEmployee {
 
     @Column(name = "fullname")
     private String fullName;
@@ -24,7 +24,7 @@ public class ΜunicipalΕmployee {
     @Column(name = "email")
     private String email;
 
-    public ΜunicipalΕmployee(String fullName, int AMKA, String municipalHouse, String password, String email) {
+    public MunicipalEmployee(String fullName, int AMKA, String municipalHouse, String password, String email) {
         this.fullName = fullName;
         this.AMKA = AMKA;
         this.municipalHouse = municipalHouse;
@@ -50,7 +50,7 @@ public class ΜunicipalΕmployee {
             inverseJoinColumns=@JoinColumn(name="citizen_amka"))
     private List<Citizen> citizenList;
 
-    public ΜunicipalΕmployee() {
+    public MunicipalEmployee() {
 
     }
 
