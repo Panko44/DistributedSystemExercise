@@ -4,19 +4,19 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
 </head>
 
 <body>
 <h1>Select what kind of user you want to add</h1>
 
-<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorAddUser/citizenForm')" class="button">Add Citizen</button>
-<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorAddUser/municipalEmployeeForm')" class="button">Add Municipal Employee</button>
-<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorAddUser/veterinaryForm')" class="button">Add Veterinary</button>
+<button class="open-button" onclick="openFormCitizen()">Add Citizen</button>
+<button class="open-button" onclick="openFormEmployee()">Add Municipal Employee</button>
+<button class="open-button" onclick="openFormVeterinary()">Add Veterinary</button>
 
 <style>
     body {font-family: Arial, Helvetica, sans-serif;}
@@ -26,7 +26,7 @@
     .open-button {
         background-color: #555;
         color: white;
-        padding: 16px 20px;+s
+        padding: 16px 20px;
         border: none;
         cursor: pointer;
         opacity: 0.8;
@@ -130,28 +130,28 @@
 <!--  <h1>Employee Management System</h1>-->
 <!--  <hr>-->
 <!--  <h2>Save Employee</h2>-->
-<!--  ayto exw-->
-<!--  <form action="#" th:action="@{/AdministratorController/AdministratorAddUser/Citizen}" th:object="${citizen}"-->
-<!--        method="POST">-->
-<!--    <input type="text" th:field="*{address}"-->
-<!--           placeholder="Employee address" class="form-control mb-4 col-4">-->
 
-<!--    <input type="text" th:field="*{age}"-->
-<!--           placeholder="Employee age" class="form-control mb-4 col-4">-->
+<form action="#" th:action="@{/AdministratorController/AdministratorAddUser/citizenSave}" th:object="${citizen}"
+      method="POST">
+    <input type="text" th:field="*{address}"
+           placeholder="Employee address" class="form-control mb-4 col-4">
 
-<!--    <input type="text" th:field="*{fullName}"-->
-<!--           placeholder="Employee fullNAme" class="form-control mb-4 col-4">-->
-<!--    <input type="text" th:field="*{AMKA}"-->
-<!--           placeholder="Employee AMKA" class="form-control mb-4 col-4">-->
-<!--    <input type="text" th:field="*{municipalHouse}"-->
-<!--           placeholder="Employee municipal" class="form-control mb-4 col-4">-->
-<!--    <input type="text" th:field="*{password}"-->
-<!--           placeholder="Employee password" class="form-control mb-4 col-4">-->
-<!--    <input type="text" th:field="*{email}"-->
-<!--           placeholder="Employee Email" class="form-control mb-4 col-4">-->
+    <input type="text" th:field="*{age}"
+           placeholder="Employee age" class="form-control mb-4 col-4">
 
-<!--    <button type="submit" class="btn btn-info col-2"> Save Employee</button>-->
-<!--  </form>-->
+    <input type="text" th:field="*{fullName}"
+           placeholder="Employee fullNAme" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{AMKA}"
+           placeholder="Employee AMKA" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{municipalHouse}"
+           placeholder="Employee municipal" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{password}"
+           placeholder="Employee password" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{email}"
+           placeholder="Employee Email" class="form-control mb-4 col-4">
+
+    <button type="submit" class="btn btn-info col-2"> Save Employee</button>
+</form>
 
 <!--<hr>-->
 <!--</div>-->
@@ -231,31 +231,31 @@
 <!--  </form>-->
 <!--</div>-->
 
-<!--<script>-->
-<!--    function openFormCitizen() {-->
-<!--        document.getElementById("myForm").style.display = "block";-->
-<!--    }-->
+<script>
+    function openFormCitizen() {
+        document.getElementById("myForm").style.display = "block";
+    }
 
-<!--    function closeForm() {-->
-<!--        document.getElementById("myForm").style.display = "none";-->
-<!--    }-->
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
 
-<!--    function openFormEmployee() {-->
-<!--        document.getElementById("openFormEmployee").style.display = "block";-->
-<!--    }-->
+    function openFormEmployee() {
+        document.getElementById("openFormEmployee").style.display = "block";
+    }
 
-<!--    function closeFormEmployee() {-->
-<!--        document.getElementById("openFormEmployee").style.display = "none";-->
-<!--    }-->
+    function closeFormEmployee() {
+        document.getElementById("openFormEmployee").style.display = "none";
+    }
 
-<!--	function openFormVeterinary() {-->
-<!--        document.getElementById("myFormVet").style.display = "block";-->
-<!--    }-->
+	function openFormVeterinary() {
+        document.getElementById("myFormVet").style.display = "block";
+    }
 
-<!--    function closeFormVet() {-->
-<!--        document.getElementById("myFormVet").style.display = "none";-->
-<!--    }-->
+    function closeFormVet() {
+        document.getElementById("myFormVet").style.display = "none";
+    }
 
-<!--</script>-->
+</script>
 </body>
 </html>

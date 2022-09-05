@@ -36,8 +36,8 @@ public class MunicipalEmployee {
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
-            name="municipalEmployee_pet",
-            joinColumns=@JoinColumn(name="municipalEmployee_amka"),
+            name="municipalemployee_pet",
+            joinColumns=@JoinColumn(name="municipalemployee_amka"),
             inverseJoinColumns=@JoinColumn(name="pet_microchip"))
     private List<Pet> petList;
 
@@ -45,8 +45,8 @@ public class MunicipalEmployee {
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
-            name="municipalEmployee_citizen",
-            joinColumns=@JoinColumn(name="municipalEmployee_amka"),
+            name="municipalemployee_citizen",
+            joinColumns=@JoinColumn(name="municipalemployee_amka"),
             inverseJoinColumns=@JoinColumn(name="citizen_amka"))
     private List<Citizen> citizenList;
 

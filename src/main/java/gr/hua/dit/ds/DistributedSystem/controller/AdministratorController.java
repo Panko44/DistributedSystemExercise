@@ -1,6 +1,7 @@
 package gr.hua.dit.ds.DistributedSystem.controller;
 
 import gr.hua.dit.ds.DistributedSystem.entity.Citizen;
+import gr.hua.dit.ds.DistributedSystem.entity.MunicipalEmployee;
 import gr.hua.dit.ds.DistributedSystem.entity.Veterinary;
 import gr.hua.dit.ds.DistributedSystem.repository.AdministratorRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.CitizenRepository;
@@ -9,9 +10,12 @@ import gr.hua.dit.ds.DistributedSystem.repository.VeterinaryRepository;
 import gr.hua.dit.ds.DistributedSystem.service.AdministratorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +34,7 @@ public class AdministratorController {
     @Autowired
     private VeterinaryRepository veterinaryRepository;
 
+
     private AdministratorServiceImpl administratorServiceImpl;
 
     @GetMapping("/AdministratorPage")
@@ -38,20 +43,30 @@ public class AdministratorController {
         return "administrator_page";
     }
 
-    @GetMapping("/AdministratorDelete")
-    public String administratorDelete(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
-        model.addAttribute("name", name);
-        return "Admin_delete_page";
-    }
+//    @GetMapping("/AdministratorDelete")
+//    public String administratorDelete(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
+//        model.addAttribute("name", name);
+//        return "Admin_delete_page";
+//    }
 
     @RequestMapping(value = "/AdministratorDeletePage/Citizen/{AMKA}", method = { RequestMethod.GET, RequestMethod.POST })
-    public String administratorDeleteCitizen(@PathVariable(value = "ΑΜΚΑ") Integer AMKA) {
-        System.out.println("Citizen1 amka" +AMKA);
-        System.out.println("Citizen2 amka" +AMKA);
-        administratorServiceImpl.deleteCitizen(AMKA);
-        System.out.println("Citizen3 amka" +AMKA);
+    public String administratorDeleteCitizen(@PathVariable(value = "AMKA") Integer AMKA) {
+        citizenRepository.deleteById(AMKA);
         return "redirect:/AdministratorController/AdministratorPage";
     }
+
+    @RequestMapping(value = "/AdministratorDeletePage/Veterinary/{AMKA}", method = { RequestMethod.GET, RequestMethod.POST })
+    public String administratorDeleteVeterinary(@PathVariable(value = "AMKA") Integer AMKA) {
+        veterinaryRepository.deleteById(AMKA);
+        return "redirect:/AdministratorController/AdministratorPage";
+    }
+
+    @RequestMapping(value = "/AdministratorDeletePage/MunicipalEmployee/{AMKA}", method = { RequestMethod.GET, RequestMethod.POST })
+    public String administratorDeleteMunicipalEmployee(@PathVariable(value = "AMKA") Integer AMKA) {
+        municipalEmployeeRepository.deleteById(AMKA);
+        return "redirect:/AdministratorController/AdministratorPage";
+    }
+
 
     @GetMapping("/AdministratorShowList")
     public String administratorShowList(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
@@ -59,15 +74,18 @@ public class AdministratorController {
         return "Admin_show_list";
     }
 
-    @GetMapping("/AdministratorModificationPage")
-    public String administratorModificationPage(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
-        model.addAttribute("name", name);
-        return "Admin_modification_page";
-    }
+//    @GetMapping("/AdministratorModificationPage")
+//    public String administratorModificationPage(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
+//        model.addAttribute("name", name);
+//        return "Admin_modification_page";
+//    }
 
     @GetMapping("/AdministratorAddUser")
     public String administratorAddUser(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
-        model.addAttribute("name", name);
+        //model.addAttribute("name", name);
+//        Citizen citizen = new Citizen();
+//        Veterinary veterinary = new Veterinary();
+//        model.addAttribute("citizen", citizen);
         return "admin_add_user";
     }
 
@@ -81,45 +99,97 @@ public class AdministratorController {
 //    }
 
 
-    @ResponseBody
-    @GetMapping("/ShowMunicipalEmployees")
-    List retrieveAllMunicipalEmployees(){
-        return municipalEmployeeRepository.findAll();
+    //@RequestMapping(value = "/AdministratorAddUser/citizenForm", method = { RequestMethod.GET, RequestMethod.POST })
+    @GetMapping("/AdministratorAddUser/citizenForm")
+    public String addCitizenForm(Citizen citizen, Model model){
+//        model.addAttribute("citizen", citizen);
+//        Citizen savedCitizen = citizenRepository.save(citizen);
+//        System.out.println("Citizen amka"+savedCitizen.getAMKA());
+        return "admin_add_citizen";
     }
 
-    @ResponseBody
-    @GetMapping("/ShowVeterinaries")
-    List<Veterinary> retrieveAllVeterinaries() {
-        return veterinaryRepository.findAll();
-    }
-
-
-    @RequestMapping(value = "/AdministratorAddUser/Citizen", method = { RequestMethod.GET, RequestMethod.POST })
-    public String addCitizen(Citizen citizen, Model model){
+    @RequestMapping(value = "/AdministratorAddUser/citizenSave", method = { RequestMethod.GET, RequestMethod.POST })
+    public String addCitizenSave(Citizen citizen, Model model){
         model.addAttribute("citizen", citizen);
         Citizen savedCitizen = citizenRepository.save(citizen);
-
         System.out.println("Citizen amka"+savedCitizen.getAMKA());
+        return "redirect:/AdministratorController/AdministratorPage";
+    }
 
-        //URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaCitizen}").buildAndExpand(savedCitizen.getAMKA()).toUri();
 
-        //return ResponseEntity.created(location).build();
+    //@RequestMapping(value = "/AdministratorAddUser/veterinaryForm", method = { RequestMethod.GET, RequestMethod.POST })
+    @GetMapping("/AdministratorAddUser/veterinaryForm")
+    public String addVeterinaryForm(Veterinary veterinary, Model model){
+//        model.addAttribute("veterinary", veterinary);
+//        Veterinary savedVeterinary = veterinaryRepository.save(veterinary);
+//        System.out.println("Citizen amka"+savedVeterinary.getAMKA());
+        return "admin_add_veterinary";
+    }
+
+    @RequestMapping(value = "/AdministratorAddUser/veterinarySave", method = { RequestMethod.GET, RequestMethod.POST })
+    public String addVeterinarySave(Veterinary veterinary, Model model){
+        model.addAttribute("veterinary", veterinary);
+        Veterinary savedVeterinary = veterinaryRepository.save(veterinary);
+        System.out.println("Citizen amka"+savedVeterinary.getAMKA());
+        return "redirect:/AdministratorController/AdministratorPage";
+    }
+
+
+    @GetMapping("/AdministratorAddUser/municipalEmployeeForm")
+    public String addMunicipalEmployeeForm(MunicipalEmployee municipalEmployee, Model model){
+//        model.addAttribute("veterinary", veterinary);
+//        Veterinary savedVeterinary = veterinaryRepository.save(veterinary);
+//        System.out.println("Citizen amka"+savedVeterinary.getAMKA());
+        return "admin_add_municipalEmployee";
+    }
+
+    @RequestMapping(value = "/AdministratorAddUser/municipalEmployeeSave", method = { RequestMethod.GET, RequestMethod.POST })
+    public String addMunicipalEmployeeSave(MunicipalEmployee municipalEmployee, Model model){
+        model.addAttribute("municipalEmployee", municipalEmployee);
+        MunicipalEmployee savedMunicipalEmployee = municipalEmployeeRepository.save(municipalEmployee);
+        System.out.println("municipalEmployee amka"+savedMunicipalEmployee.getAMKA());
         return "redirect:/AdministratorController/AdministratorPage";
     }
 
     @RequestMapping(value = "/AdministratorModificationPage/Citizen/{AMKA}", method = { RequestMethod.GET, RequestMethod.POST })
-    public String showEditForm(@PathVariable("AMKA") Integer AMKA, Model model){
-        //String amka= AMKA.toString();
-        Citizen citizen = administratorServiceImpl.get(AMKA);
-
+    public String showEditFormCitizen(@PathVariable("AMKA") Integer AMKA, Model model){
+        Optional<Citizen> citizen = citizenRepository.findById(AMKA);
         model.addAttribute("citizen", citizen);
-        return "admin_add_user";
+        return "admin_add_citizen";
+    }
+
+    @RequestMapping(value = "/AdministratorModificationPage/Veterinary/{AMKA}", method = { RequestMethod.GET, RequestMethod.POST })
+    public String showEditFormVeterinary(@PathVariable("AMKA") Integer AMKA, Model model) {
+        Optional<Veterinary> veterinary = veterinaryRepository.findById(AMKA);
+        model.addAttribute("veterinary", veterinary);
+        return "admin_add_veterinary";
+    }
+
+    @RequestMapping(value = "/AdministratorModificationPage/MunicipalEmployee/{AMKA}", method = { RequestMethod.GET, RequestMethod.POST })
+    public String showEditFormMunicipalEmployee(@PathVariable("AMKA") Integer AMKA, Model model) {
+        Optional<MunicipalEmployee> municipalEmployee = municipalEmployeeRepository.findById(AMKA);
+        model.addAttribute("municipalEmployee", municipalEmployee);
+        return "admin_add_municipalEmployee";
     }
 
     @GetMapping("/ShowCitizens")
     public String showCitizenList(Model model){
         List<Citizen> listCitizen = citizenRepository.findAll();
         model.addAttribute("listCitizen", listCitizen);
+        return "Admin_show_list";
+    }
+
+    @GetMapping("/ShowVeterinary")
+    public String showVeterinaryList(Model model){
+        List<Veterinary> listVeterinary = veterinaryRepository.findAll();
+        model.addAttribute("listVeterinary", listVeterinary);
+        return "Admin_show_list";
+    }
+
+    @GetMapping("/ShowMunicipalEmployees")
+    public String showMunicipalEmployeeList(Model model){
+        List<MunicipalEmployee> listMunicipalEmployee = municipalEmployeeRepository.findAll();
+        model.addAttribute("listMunicipalEmployee", listMunicipalEmployee);
         return "Admin_show_list";
     }
 

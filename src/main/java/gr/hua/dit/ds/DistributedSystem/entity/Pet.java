@@ -20,7 +20,7 @@ public class Pet {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "numberofmicrochip")
-    private String numberOfMicrochip;
+    private Integer numberOfMicrochip;
 
     @Column(name = "amkaowner")
     private String amkaOwner;
@@ -44,12 +44,12 @@ public class Pet {
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
-            name="municipalEmployee_pet",
-            joinColumns=@JoinColumn(name="municipalEmployee_amka"),
+            name="municipalemployee_pet",
+            joinColumns=@JoinColumn(name="municipalemployee_amka"),
             inverseJoinColumns=@JoinColumn(name="pet_microchip"))
     private List<Pet> petList;
 
-    public Pet(String race, String gender, String dateOfBirth, String numberOfMicrochip, String amkaOwner) {
+    public Pet(String race, String gender, String dateOfBirth, Integer numberOfMicrochip, String amkaOwner) {
         this.race = race;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
@@ -71,7 +71,7 @@ public class Pet {
         return dateOfBirth;
     }
 
-    public String getNumberOfMicrochip() {
+    public Integer getNumberOfMicrochip() {
         return numberOfMicrochip;
     }
 
@@ -91,7 +91,7 @@ public class Pet {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setNumberOfMicrochip(String numberOfMicrochip) {
+    public void setNumberOfMicrochip(Integer numberOfMicrochip) {
         this.numberOfMicrochip = numberOfMicrochip;
     }
 

@@ -25,7 +25,7 @@ public class Veterinary{
     private String email;
 
     @Column(name = "age")
-    private String age;
+    private Integer age;
 
     @ManyToMany(fetch=FetchType.LAZY,
             cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -40,7 +40,7 @@ public class Veterinary{
 
     }
 
-    public Veterinary(String fullName, int AMKA, String municipalHouse, String password, String email, String age) {
+    public Veterinary(String fullName, int AMKA, String municipalHouse, String password, String email, Integer age) {
         this.fullName = fullName;
         this.AMKA = AMKA;
         this.municipalHouse = municipalHouse;
@@ -89,11 +89,11 @@ public class Veterinary{
         this.email = email;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

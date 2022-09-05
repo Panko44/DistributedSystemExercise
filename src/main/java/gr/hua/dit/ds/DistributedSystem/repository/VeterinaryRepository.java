@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VeterinaryRepository extends JpaRepository<Veterinary,String> {
+public interface VeterinaryRepository extends JpaRepository<Veterinary,Integer> {
 
 }

@@ -22,21 +22,21 @@ public class VeterinaryServiceImpl implements VeterinaryService{
     private VeterinaryRepository veterinaryRepository;
 
 
-    @Override
-    @Transactional
-    public boolean logIn(String email, String password) {
-        if(email != null){
-            Optional<Veterinary> admin = veterinaryRepository.findById(email);
-            if(admin != null){
-                if(admin.get().getPassword() == password){
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return false;
-    }
+//    @Override
+//    @Transactional
+//    public boolean logIn(String email, String password) {
+//        if(email != null){
+//            Optional<Veterinary> admin = veterinaryRepository.findById(email);
+//            if(admin != null){
+//                if(admin.get().getPassword() == password){
+//                    return true;
+//                }
+//                return false;
+//            }
+//            return false;
+//        }
+//        return false;
+//    }
 
     @Override
     @Transactional

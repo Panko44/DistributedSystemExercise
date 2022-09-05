@@ -54,6 +54,37 @@
             </td>
         </tr>
     </th:block>
+
+    <th:block th:each="veterinary : ${listVeterinary}">
+        <tr>
+            <td th:text="${veterinary.AMKA}"></td>
+            <td th:text="${veterinary.fullName}"></td>
+            <td th:text="${veterinary.municipalHouse}"></td>
+            <td th:text="${veterinary.password}"></td>
+            <td th:text="${veterinary.email}"></td>
+            <td th:text="${veterinary.age}"></td>
+            <td>
+                <a class="h4 mr-3" th:href="@{'/AdministratorController/AdministratorModificationPage/Veterinary/' + ${veterinary.AMKA}}">Edit</a>
+                <a class="h4" th:href="@{/AdministratorController/AdministratorDeletePage/Veterinary/{AMKA}(AMKA=${veterinary.AMKA})}">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+
+
+    <th:block th:each="municipalEmployee : ${listMunicipalEmployee}">
+        <tr>
+            <td th:text="${municipalEmployee.AMKA}"></td>
+            <td th:text="${municipalEmployee.fullName}"></td>
+            <td th:text="${municipalEmployee.municipalHouse}"></td>
+            <td th:text="${municipalEmployee.password}"></td>
+            <td th:text="${municipalEmployee.email}"></td>
+            <td>
+                <a class="h4 mr-3" th:href="@{'/AdministratorController/AdministratorModificationPage/MunicipalEmployee/' + ${municipalEmployee.AMKA}}">Edit</a>
+                <a class="h4" th:href="@{/AdministratorController/AdministratorDeletePage/MunicipalEmployee/{AMKA}(AMKA=${municipalEmployee.AMKA})}">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+
     </tbody>
 </table>
 </div>
@@ -63,7 +94,7 @@
 
 <button onClick="parent.open('http://localhost:8000/AdministratorController/ShowCitizens')" class="button">Show list citizen</button>
 <button onClick="parent.open('http://localhost:8000/AdministratorController/ShowMunicipalEmployees')" class="button">Show list municipal employee</button>
-<button onClick="parent.open('http://localhost:8000/AdministratorController/ShowVeterinaries')" class="button">Show list veterinary</button>
+<button onClick="parent.open('http://localhost:8000/AdministratorController/ShowVeterinary')" class="button">Show list veterinary</button>
 
 </body>
 

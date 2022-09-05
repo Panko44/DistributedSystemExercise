@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+
 <body>
 
 <h2>Please provide pet's data</h2>
 
-<form action="/action_page.php">
-  <label for="race">Race:</label><br>
-  <input type="text" id="race" name="race"><br>
-  <label for="gender">Gender:</label><br>
-  <input type="text" id="gender" name="gender"><br><br>
-  <label for="numberOfMicrochip">Number of microchip:</label><br>
-  <input type="text" id="numberOfMicrochip" name="numberOfMicrochip"><br><br>
-  <label for="dateOfBirth">Date of birth:</label><br>
-  <input type="text" id="dateOfBirth" name="dateOfBirth"><br><br>
-  <label for="amkaOwner">Your amka:</label><br>
-  <input type="text" id="amkaOwner" name="amkaOwner"><br><br>
-  <input type="submit" value="Submit">
-</form>
+<form action="#" th:action="@{/CitizenController/NewPetSave}" th:object="${pet}"
+      method="POST">
+  <input type="text" th:field="*{race}"
+         placeholder="race" class="form-control mb-4 col-4">
+  <input type="text" th:field="*{gender}"
+         placeholder="gender" class="form-control mb-4 col-4">
+  <input type="text" th:field="*{dateOfBirth}"
+         placeholder="Date of birth" class="form-control mb-4 col-4">
+  <input type="text" th:field="*{numberOfMicrochip}"
+         placeholder="Number of microchip" class="form-control mb-4 col-4">
+  <input type="text" th:field="*{amkaOwner}"
+         placeholder="Amka owner" class="form-control mb-4 col-4">
 
-<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".(Na valw ekei pou theloume na mas kateythynei)</p>
+  <button type="submit" class="btn btn-info col-2"> Save Pet</button>
+</form>
 
 </body>
 </html>

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public interface VeterinaryService {
 
-    public boolean logIn(String email, String password);
+    //public boolean logIn(String email, String password);
 
     public void examinationStatement(@RequestBody Pet pet);
 

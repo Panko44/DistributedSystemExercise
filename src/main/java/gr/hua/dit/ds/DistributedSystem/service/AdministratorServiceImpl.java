@@ -10,7 +10,6 @@ import gr.hua.dit.ds.DistributedSystem.repository.MunicipalEmployeeRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.VeterinaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -67,31 +66,31 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
         return list;
     }
 
-    @Override
-    @Transactional
-    public ResponseEntity<Object> modificationMunicipalEmployee(@RequestBody MunicipalEmployee municipalEmployee, @PathVariable Integer AMKA){
-        String amka= AMKA.toString();
-        Optional<MunicipalEmployee> municipalEmployeeOptional = municipalEmployeeRepository.findById(amka);
-        if(!municipalEmployeeOptional.isPresent()){
-            return ResponseEntity.notFound().build();
-        }
-        municipalEmployee.setAMKA(AMKA);
-        municipalEmployeeRepository.save(municipalEmployee);
-        return ResponseEntity.noContent().build();
-    }
+//    @Override
+//    @Transactional
+//    public ResponseEntity<Object> modificationMunicipalEmployee(@RequestBody MunicipalEmployee municipalEmployee, @PathVariable Integer AMKA){
+//        String amka= AMKA.toString();
+//        Optional<MunicipalEmployee> municipalEmployeeOptional = municipalEmployeeRepository.findById(amka);
+//        if(!municipalEmployeeOptional.isPresent()){
+//            return ResponseEntity.notFound().build();
+//        }
+//        municipalEmployee.setAMKA(AMKA);
+//        municipalEmployeeRepository.save(municipalEmployee);
+//        return ResponseEntity.noContent().build();
+//    }
 
-    @Override
-    @Transactional
-    public ResponseEntity<Object> modificationVeterinary(@RequestBody Veterinary veterinary,Integer AMKA){
-        String amka= AMKA.toString();
-        Optional<Veterinary> veterinaryOptional = veterinaryRepository.findById(amka);
-        if(!veterinaryOptional.isPresent()){
-            return ResponseEntity.notFound().build();
-        }
-        veterinary.setAMKA(AMKA);
-        veterinaryRepository.save(veterinary);
-        return ResponseEntity.noContent().build();
-    }
+//    @Override
+//    @Transactional
+//    public ResponseEntity<Object> modificationVeterinary(@RequestBody Veterinary veterinary,Integer AMKA){
+//        String amka= AMKA.toString();
+//        Optional<Veterinary> veterinaryOptional = veterinaryRepository.findById(amka);
+//        if(!veterinaryOptional.isPresent()){
+//            return ResponseEntity.notFound().build();
+//        }
+//        veterinary.setAMKA(AMKA);
+//        veterinaryRepository.save(veterinary);
+//        return ResponseEntity.noContent().build();
+//    }
 
 //    @Override
 //    @Transactional
@@ -112,63 +111,57 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
         Citizen savedCitizen = citizenRepository.save(citizen);
     }
 
-    @Override
-    @Transactional
-    public ResponseEntity<Object> addMunicipalEmployee(@RequestBody MunicipalEmployee municipalEmployee ){
-        MunicipalEmployee savedΜunicipalΕmployee = municipalEmployeeRepository.save(municipalEmployee);
-        System.out.println("ΜunicipalΕmployee amka"+savedΜunicipalΕmployee.getAMKA());
+//    @Override
+//    @Transactional
+//    public ResponseEntity<Object> addMunicipalEmployee(@RequestBody MunicipalEmployee municipalEmployee ){
+//        MunicipalEmployee savedΜunicipalΕmployee = municipalEmployeeRepository.save(municipalEmployee);
+//        System.out.println("ΜunicipalΕmployee amka"+savedΜunicipalΕmployee.getAMKA());
+//
+//        URI location =ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaΜunicipalΕmployee}").buildAndExpand(savedΜunicipalΕmployee.getAMKA()).toUri();
+//        return ResponseEntity.created(location).build();
+//    }
 
-        URI location =ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaΜunicipalΕmployee}").buildAndExpand(savedΜunicipalΕmployee.getAMKA()).toUri();
-        return ResponseEntity.created(location).build();
-    }
+//    @Override
+//    @Transactional
+//    public ResponseEntity<Object> addVeterinary(@RequestBody Veterinary veterinary){
+//        Veterinary savedVeterinary = veterinaryRepository.save(veterinary);
+//        System.out.println("Veterinary amka"+savedVeterinary.getAMKA());
+//
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaVeterinary}").buildAndExpand(savedVeterinary.getAMKA()).toUri();
+//        return ResponseEntity.created(location).build();
+//    }
 
-    @Override
-    @Transactional
-    public ResponseEntity<Object> addVeterinary(@RequestBody Veterinary veterinary){
-        Veterinary savedVeterinary = veterinaryRepository.save(veterinary);
-        System.out.println("Veterinary amka"+savedVeterinary.getAMKA());
+//    @Override
+//    @Transactional
+//    public void deleteCitizen(Integer AMKA){
+//        System.out.println("null" +AMKA);
+//        System.out.println("Citizen4 amka" +AMKA);
+//            //String amka= password.toString();
+//
+//            boolean y = citizenRepository.existsById(AMKA);
+//
+//            if (y){
+//                System.out.println("Citizen5 amka" +AMKA);
+//            }
+//    }
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaVeterinary}").buildAndExpand(savedVeterinary.getAMKA()).toUri();
-        return ResponseEntity.created(location).build();
-    }
+//    @Override
+//    @Transactional
+//    public void deleteMunicipalEmployee(Integer AMKA){
+//        if (AMKA != null){
+//            String amka= AMKA.toString();
+//            municipalEmployeeRepository.deleteById(amka);
+//        }
+//    }
 
-    @Override
-    @Transactional
-    public void deleteCitizen(Integer AMKA){
-        System.out.println("null" +AMKA);
-        if (AMKA == 123456789){
-            System.out.println("Citizen4 amka" +AMKA);
-            String amka= AMKA.toString();
-            citizenRepository.deleteById(AMKA);
-        } else {
-            System.out.println("null" +AMKA);
-        }
-        try {
-            System.out.println("First character: ");
-        }
-        catch(NullPointerException e) {
-            System.out.println("NullPointerException thrown!");
-        }
-
-    }
-
-    @Override
-    @Transactional
-    public void deleteMunicipalEmployee(Integer AMKA){
-        if (AMKA != null){
-            String amka= AMKA.toString();
-            municipalEmployeeRepository.deleteById(amka);
-        }
-    }
-
-    @Override
-    @Transactional
-    public void deleteVeterinary(Integer AMKA){
-        if (AMKA != null){
-            String amka= AMKA.toString();
-            veterinaryRepository.deleteById(amka);
-        }
-    }
+//    @Override
+//    @Transactional
+//    public void deleteVeterinary(Integer AMKA){
+//        if (AMKA != null){
+//            String amka= AMKA.toString();
+//            veterinaryRepository.deleteById(amka);
+//        }
+//    }
 
     @Override
     @Transactional
@@ -185,12 +178,11 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
         }
         return false;
     }
-
-    public Citizen get(Integer AMKA) {
-        String amka= AMKA.toString();
-        Optional<Citizen> result = citizenRepository.findById(AMKA);
-        return result.get();
-    }
+//    @Transactional
+//    public Citizen get(Integer AMKA) {
+//        Optional<Citizen> result = citizenRepository.findById(AMKA);
+//        return result.get();
+//    }
 
 
 }
