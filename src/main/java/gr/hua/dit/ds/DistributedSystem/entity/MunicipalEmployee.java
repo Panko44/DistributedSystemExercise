@@ -104,4 +104,18 @@ public class MunicipalEmployee {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+    @ManyToMany(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name="lostPet",
+            joinColumns=@JoinColumn(name="amkaOwner"),
+            inverseJoinColumns=@JoinColumn(name="numberOfMicrochip"))
+    private List<Pet> lostPets;
+
+    public List getLostPets(){
+
+        return lostPets;
+    }
 }

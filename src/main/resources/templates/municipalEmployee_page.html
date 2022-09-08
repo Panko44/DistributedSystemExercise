@@ -89,6 +89,10 @@
             opacity: 1;
         }
     </style>
+    <!-- code to pdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js" ></script>
+    <!--    -->
 </head>
 <body>
 
@@ -96,9 +100,16 @@
 <p>Please choose an option:</p>
 
 <button class="open-button" onclick="openForm()">Citizen notification</button>
-<button class="button button2">Lost pet list</button>
+<!--<button class="button button2">Lost pet list</button>-->
+<button onClick="parent.open('http://localhost:8000/MunicipalEmployeeController/ShowLostPets')"class="button button2">Lost pet list</button>
 <button class="button button3">Found pet list</button>
 <button onClick="parent.open('http://localhost:8000/login?logout')" class="button button4">Logout</button>
+
+
+
+
+
+
 
 <div class="form-popup" id="openForm">
     <form action="/action_page.php" class="form-container">
@@ -113,10 +124,40 @@
         <label for="text"><b>number of microchip</b></label>
         <input type="text" placeholder="Enter number of microchip" name="number of microchip" required>
 
-        <button type="submit" class="btn">Send email</button>
+<!--        <button type="submit" class="btn">Send email</button>-->
+        <a href="javascript:generatePDF()" id="downloadButton" class="btn" >Send email</a>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
     </form>
 </div>
+
+<!-- code to pdf -->
+<script>
+    async  function generatePDF(){
+        document.getElementById("downloadButton")
+        ;
+
+        // Downloading
+        var downloading = document.getElementById("openForm")
+        var doc = new jsPDF('1', 'pt');
+
+        await html2canvas(downloading, {
+            //allowTaint: true,
+            //useCORS: true,
+            width: 530
+        }).then((canvas) => {
+            //Canvas (convert to PNG)
+            doc.addImage(canvas.toDataURL("image/png"), 'PNG', 5, 5, 1000, 500);
+        })
+
+        doc.save("Email_Mun_Employ.pdf");
+
+        //End of downloading
+
+        document.getElementById("downloadButton").innerHTML = "Click to download";
+    }
+</script>
+
+<!-- -->
 
 <script>
     function openForm() {
