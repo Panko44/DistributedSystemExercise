@@ -14,9 +14,9 @@
 <body>
 <h1>Select what kind of user you want to add</h1>
 
-<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorAddUser/citizenForm')" class="button">Add Citizen</button>
-<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorAddUser/municipalEmployeeForm')" class="button">Add Municipal Employee</button>
-<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorAddUser/veterinaryForm')" class="button">Add Veterinary</button>
+<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorAddUser/citizenForm')" class="open-button">Add Citizen</button>
+<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorAddUser/municipalEmployeeForm')" class="open-button">Add Municipal Employee</button>
+<button onClick="parent.open('http://localhost:8000/AdministratorController/AdministratorAddUser/veterinaryForm')" class="open-button">Add Veterinary</button>
 
 <style>
     body {font-family: Arial, Helvetica, sans-serif;}
@@ -24,17 +24,17 @@
 
     /* Button used to open the contact form - fixed at the bottom of the page */
     .open-button {
-        background-color: #555;
-        color: white;
-        padding: 16px 20px;+s
-        border: none;
-        cursor: pointer;
-        opacity: 0.8;
-        position: relative;
-        bottom: 23px;
-        right: 28px;
-        width: 280px;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
     }
+    .open-button{background-color: #4CAF50;}
 
     /* The popup form - hidden by default */
     .form-popup {
@@ -42,7 +42,7 @@
         position: relative;
         bottom: 0;
         right: 15px;
-        border: 3px solid #f1f1f1;
+        border: 3px solid #4CAF50;
         z-index: 9;
     }
 
@@ -50,7 +50,7 @@
     .form-container {
         max-width: 300px;
         padding: 10px;
-        background-color: white;
+        background-color: #4CAF50;
     }
 
     /* Full-width input fields */
@@ -59,19 +59,19 @@
         padding: 15px;
         margin: 5px 0 22px 0;
         border: none;
-        background: #f1f1f1;
+        background: #4CAF50;
     }
 
     /* When the inputs get focus, do something */
     .form-container input[type=text]:focus, .form-container input[type=password]:focus {
-        background-color: #ddd;
+        background-color: #4CAF50;
         outline: none;
     }
 
     /* Set a style for the submit/login button */
     .form-container .btn {
         background-color: #04AA6D;
-        color: white;
+        color: #4CAF50;
         padding: 16px 20px;
         border: none;
         cursor: pointer;
