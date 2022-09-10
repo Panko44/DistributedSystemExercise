@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet"
@@ -25,69 +25,6 @@
     .button{background-color: #4CAF50;}
 </style>
 <body>
-<div>
-<table class="table table-bordered">
-    <thead class="thead-dark">
-    <tr>
-        <th>AMKA</th>
-        <th>fullName</th>
-        <th>municipalHouse</th>
-        <th>password</th>
-        <th>email</th>
-        <th>address</th>
-        <th>age</th>
-    </tr>
-    </thead>
-    <tbody>
-    <th:block th:each="citizen : ${listCitizen}">
-        <tr>
-            <td th:text="${citizen.AMKA}"></td>
-            <td th:text="${citizen.fullName}"></td>
-            <td th:text="${citizen.municipalHouse}"></td>
-            <td th:text="${citizen.password}"></td>
-            <td th:text="${citizen.email}"></td>
-            <td th:text="${citizen.address}"></td>
-            <td th:text="${citizen.age}"></td>
-            <td>
-                <a class="h4 mr-3" th:href="@{'/AdministratorController/AdministratorModificationPage/Citizen/' + ${citizen.AMKA}}">Edit</a>
-                <a class="h4" th:href="@{/AdministratorController/AdministratorDeletePage/Citizen/{AMKA}(AMKA=${citizen.AMKA})}">Delete</a>
-            </td>
-        </tr>
-    </th:block>
-
-    <th:block th:each="veterinary : ${listVeterinary}">
-        <tr>
-            <td th:text="${veterinary.AMKA}"></td>
-            <td th:text="${veterinary.fullName}"></td>
-            <td th:text="${veterinary.municipalHouse}"></td>
-            <td th:text="${veterinary.password}"></td>
-            <td th:text="${veterinary.email}"></td>
-            <td th:text="${veterinary.age}"></td>
-            <td>
-                <a class="h4 mr-3" th:href="@{'/AdministratorController/AdministratorModificationPage/Veterinary/' + ${veterinary.AMKA}}">Edit</a>
-                <a class="h4" th:href="@{/AdministratorController/AdministratorDeletePage/Veterinary/{AMKA}(AMKA=${veterinary.AMKA})}">Delete</a>
-            </td>
-        </tr>
-    </th:block>
-
-
-    <th:block th:each="municipalEmployee : ${listMunicipalEmployee}">
-        <tr>
-            <td th:text="${municipalEmployee.AMKA}"></td>
-            <td th:text="${municipalEmployee.fullName}"></td>
-            <td th:text="${municipalEmployee.municipalHouse}"></td>
-            <td th:text="${municipalEmployee.password}"></td>
-            <td th:text="${municipalEmployee.email}"></td>
-            <td>
-                <a class="h4 mr-3" th:href="@{'/AdministratorController/AdministratorModificationPage/MunicipalEmployee/' + ${municipalEmployee.AMKA}}">Edit</a>
-                <a class="h4" th:href="@{/AdministratorController/AdministratorDeletePage/MunicipalEmployee/{AMKA}(AMKA=${municipalEmployee.AMKA})}">Delete</a>
-            </td>
-        </tr>
-    </th:block>
-
-    </tbody>
-</table>
-</div>
 
 <h1>Show List!!!!!</h1>
 <p>Please choose an option:</p>
@@ -98,8 +35,6 @@
 
 </body>
 
-</html>
 
 
 </html>
-

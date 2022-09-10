@@ -29,16 +29,14 @@
     <table class="table table-bordered">
         <thead class="thead-dark">
         <tr>
-            <th>amkaOwner</th>
             <th>numberOfMicrochip</th>
 
         </tr>
         </thead>
         <tbody>
-        <th:block th:each="lostPet : ${listLostPet}">
+        <th:block th:each="foundPet : ${listFoundPet}">
             <tr>
-                <td th:text="${lostPet.amkaOwner}"></td>
-                <td th:text="${lostPet.numberOfMicrochip}"></td>
+                <td th:text="${foundPet.numberOfMicrochip}"></td>
             </tr>
         </th:block>
         </tbody>
@@ -46,5 +44,8 @@
 </div>
 
 </body>
+
+</html>
+
 
 </html>

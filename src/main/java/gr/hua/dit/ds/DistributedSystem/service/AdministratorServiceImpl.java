@@ -42,29 +42,29 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
 
         administratorRepository = admin ;
     }
-
-    @Override
-    @Transactional
-    public List<Citizen> ListCitizens(){
-        List<Citizen> list = citizenRepository.findAll();
-        return list;
-    }
-
-    @Override
-    @Transactional
-    public List<MunicipalEmployee> ListMunicipalEmployees(){
-
-        List<MunicipalEmployee> list = municipalEmployeeRepository.findAll();
-        return list;
-    }
-
-    @Override
-    @Transactional
-    public List<Veterinary> ListVeterinaries(){
-
-        List<Veterinary> list = veterinaryRepository.findAll();
-        return list;
-    }
+//
+//    @Override
+//    @Transactional
+//    public List<Citizen> ListCitizens(){
+//        List<Citizen> list = citizenRepository.findAll();
+//        return list;
+//    }
+//
+//    @Override
+//    @Transactional
+//    public List<MunicipalEmployee> ListMunicipalEmployees(){
+//
+//        List<MunicipalEmployee> list = municipalEmployeeRepository.findAll();
+//        return list;
+//    }
+//
+//    @Override
+//    @Transactional
+//    public List<Veterinary> ListVeterinaries(){
+//
+//        List<Veterinary> list = veterinaryRepository.findAll();
+//        return list;
+//    }
 
 //    @Override
 //    @Transactional
@@ -104,12 +104,12 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
 //        citizenRepository.save(citizen);
 //        return ResponseEntity.noContent().build();
 //    }
-
-    @Override
-    @Transactional
-    public void saveCitizen(@RequestBody Citizen citizen){
-        Citizen savedCitizen = citizenRepository.save(citizen);
-    }
+//
+//    @Override
+//    @Transactional
+//    public void saveCitizen(@RequestBody Citizen citizen){
+//        Citizen savedCitizen = citizenRepository.save(citizen);
+//    }
 
 //    @Override
 //    @Transactional
@@ -163,22 +163,22 @@ public abstract class AdministratorServiceImpl implements AdministratorService {
 //        }
 //    }
 
-    @Override
-    @Transactional
-    public boolean logIn(String email , String password){
-        if(email != null){
-            Optional<Administrator> admin = administratorRepository.findById(email);
-            if(admin != null){
-                if(admin.get().getPassword() == password){
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return false;
-    }
+//    @Override
 //    @Transactional
+//    public boolean logIn(String email , String password){
+//        if(email != null){
+//            Optional<Administrator> admin = administratorRepository.findById(email);
+//            if(admin != null){
+//                if(admin.get().getPassword() == password){
+//                    return true;
+//                }
+//                return false;
+//            }
+//            return false;
+//        }
+//        return false;
+//    }
+////    @Transactional
 //    public Citizen get(Integer AMKA) {
 //        Optional<Citizen> result = citizenRepository.findById(AMKA);
 //        return result.get();

@@ -14,10 +14,4 @@ public class HomeController {
         return "greeting";
     }
 
-    @GetMapping("/api2")
-    public String example(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
-        model.addAttribute("name", name);
-        return "example.html";
-    }
-
 }

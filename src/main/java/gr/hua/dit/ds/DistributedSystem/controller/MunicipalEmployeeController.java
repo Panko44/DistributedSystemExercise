@@ -1,9 +1,8 @@
 package gr.hua.dit.ds.DistributedSystem.controller;
 
-import gr.hua.dit.ds.DistributedSystem.entity.Citizen;
-import gr.hua.dit.ds.DistributedSystem.entity.MunicipalEmployee;
-import gr.hua.dit.ds.DistributedSystem.repository.CitizenRepository;
-import gr.hua.dit.ds.DistributedSystem.repository.MunicipalEmployeeRepository;
+import gr.hua.dit.ds.DistributedSystem.entity.*;
+import gr.hua.dit.ds.DistributedSystem.repository.*;
+import gr.hua.dit.ds.DistributedSystem.service.MunicipalEmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +21,14 @@ public class MunicipalEmployeeController {
     @Autowired
     private MunicipalEmployeeRepository municipalEmployeeRepository;
 
+    @Autowired
+    private LostPetRepository lostPetRepository;
+
+    @Autowired
+    private FoundPetRepository foundPetRepository;
+
+    @Autowired
+    private PetRepository petRepository;
     @GetMapping("/MunicipalEmployeePage")
     public String municipalEmployeePage(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
         model.addAttribute("name", name);
@@ -30,10 +37,16 @@ public class MunicipalEmployeeController {
 
     @GetMapping("/ShowLostPets")
     public String showLostPets(Model model){
-        MunicipalEmployee m = new MunicipalEmployee();
-        List listLostPet = m.getLostPets();
+        List<LostPet> listLostPet = lostPetRepository.findAll();
         model.addAttribute("listLostPet", listLostPet);
         return "show_lost_pets";
+    }
+
+    @GetMapping("/ShowFoundPets")
+    public String showFoundPets(Model model){
+        List<FoundPet> listFoundPet = foundPetRepository.findAll();
+        model.addAttribute("listFoundPet", listFoundPet);
+        return "show_found_pets";
     }
 
 }

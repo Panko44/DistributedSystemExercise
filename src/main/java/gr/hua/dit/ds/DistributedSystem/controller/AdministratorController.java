@@ -10,7 +10,6 @@ import gr.hua.dit.ds.DistributedSystem.repository.VeterinaryRepository;
 import gr.hua.dit.ds.DistributedSystem.service.AdministratorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -43,11 +42,6 @@ public class AdministratorController {
         return "administrator_page";
     }
 
-//    @GetMapping("/AdministratorDelete")
-//    public String administratorDelete(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
-//        model.addAttribute("name", name);
-//        return "Admin_delete_page";
-//    }
 
     @RequestMapping(value = "/AdministratorDeletePage/Citizen/{AMKA}", method = { RequestMethod.GET, RequestMethod.POST })
     public String administratorDeleteCitizen(@PathVariable(value = "AMKA") Integer AMKA) {
@@ -74,37 +68,13 @@ public class AdministratorController {
         return "Admin_show_list";
     }
 
-//    @GetMapping("/AdministratorModificationPage")
-//    public String administratorModificationPage(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
-//        model.addAttribute("name", name);
-//        return "Admin_modification_page";
-//    }
-
     @GetMapping("/AdministratorAddUser")
     public String administratorAddUser(@RequestParam(name = "name", required = false, defaultValue = "user") String name, Model model) {
-        //model.addAttribute("name", name);
-//        Citizen citizen = new Citizen();
-//        Veterinary veterinary = new Veterinary();
-//        model.addAttribute("citizen", citizen);
         return "admin_add_user";
     }
 
-
-
-
-//    @ResponseBody
-//    @GetMapping("/ShowCitizens")
-//    List<Citizen> retrieveAllCitizens() {
-//        return citizenRepository.findAll();
-//    }
-
-
-    //@RequestMapping(value = "/AdministratorAddUser/citizenForm", method = { RequestMethod.GET, RequestMethod.POST })
     @GetMapping("/AdministratorAddUser/citizenForm")
     public String addCitizenForm(Citizen citizen, Model model){
-//        model.addAttribute("citizen", citizen);
-//        Citizen savedCitizen = citizenRepository.save(citizen);
-//        System.out.println("Citizen amka"+savedCitizen.getAMKA());
         return "admin_add_citizen";
     }
 
@@ -116,13 +86,8 @@ public class AdministratorController {
         return "redirect:/AdministratorController/AdministratorPage";
     }
 
-
-    //@RequestMapping(value = "/AdministratorAddUser/veterinaryForm", method = { RequestMethod.GET, RequestMethod.POST })
     @GetMapping("/AdministratorAddUser/veterinaryForm")
     public String addVeterinaryForm(Veterinary veterinary, Model model){
-//        model.addAttribute("veterinary", veterinary);
-//        Veterinary savedVeterinary = veterinaryRepository.save(veterinary);
-//        System.out.println("Citizen amka"+savedVeterinary.getAMKA());
         return "admin_add_veterinary";
     }
 
@@ -130,16 +95,13 @@ public class AdministratorController {
     public String addVeterinarySave(Veterinary veterinary, Model model){
         model.addAttribute("veterinary", veterinary);
         Veterinary savedVeterinary = veterinaryRepository.save(veterinary);
-        System.out.println("Citizen amka"+savedVeterinary.getAMKA());
+        System.out.println("Veterinary amka"+savedVeterinary.getAMKA());
         return "redirect:/AdministratorController/AdministratorPage";
     }
 
 
     @GetMapping("/AdministratorAddUser/municipalEmployeeForm")
     public String addMunicipalEmployeeForm(MunicipalEmployee municipalEmployee, Model model){
-//        model.addAttribute("veterinary", veterinary);
-//        Veterinary savedVeterinary = veterinaryRepository.save(veterinary);
-//        System.out.println("Citizen amka"+savedVeterinary.getAMKA());
         return "admin_add_municipalEmployee";
     }
 
@@ -176,42 +138,22 @@ public class AdministratorController {
     public String showCitizenList(Model model){
         List<Citizen> listCitizen = citizenRepository.findAll();
         model.addAttribute("listCitizen", listCitizen);
-        return "Admin_show_list";
+        return "admin_show_citizens";
     }
 
     @GetMapping("/ShowVeterinary")
     public String showVeterinaryList(Model model){
         List<Veterinary> listVeterinary = veterinaryRepository.findAll();
         model.addAttribute("listVeterinary", listVeterinary);
-        return "Admin_show_list";
+        return "Admin_show_veterinaries";
     }
 
     @GetMapping("/ShowMunicipalEmployees")
     public String showMunicipalEmployeeList(Model model){
         List<MunicipalEmployee> listMunicipalEmployee = municipalEmployeeRepository.findAll();
         model.addAttribute("listMunicipalEmployee", listMunicipalEmployee);
-        return "Admin_show_list";
+        return "Admin_show_municipalEmployees";
     }
-
-//    @ResponseBody
-//    @PostMapping("/AdministratorAddUser/Citizen")
-//    public ResponseEntity<Citizen> addCitizen(@RequestBody Citizen citizen){
-//        Citizen savedCitizen = citizenRepository.save(citizen);
-//        System.out.println("Citizen amka"+savedCitizen.getAMKA());
-//
-//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{amkaCitizen}").buildAndExpand(savedCitizen.getAMKA()).toUri();
-//
-//        return ResponseEntity.created(location).build();
-//    }
-
-
-//    @GetMapping("/users")
-//    public String listUsers(Model model) {
-//        List<Citizen> listUsers = administratorServiceImpl.ListCitizens();
-//        model.addAttribute("listUsers", listUsers);
-//
-//        return "citizen";
-//    }
 
 
 }

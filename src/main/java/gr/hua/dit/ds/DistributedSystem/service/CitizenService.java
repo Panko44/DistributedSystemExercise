@@ -10,10 +10,10 @@ public interface CitizenService {
 
     //public boolean logIn(String email , String password);
 
-    public ResponseEntity<Object> addNewPet(@RequestBody Pet pet);
+//    public ResponseEntity<Object> addNewPet(@RequestBody Pet pet);
 
-    public void lostPet(@RequestBody Pet pet);
+//    public void lostPet(@RequestBody lostPet lostPet);
 
-    public void findPet(@RequestBody Pet pet);
+//    public void findPet(@RequestBody Pet pet);
 
 }

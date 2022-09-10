@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
 <head>
     <style>
         .button {
@@ -108,55 +117,10 @@
 <p>Please choose an option:</p>
 
 <button onClick="parent.open('http://localhost:8000/CitizenController/NewPetForm')" class="button button1">New pet</button>
-<button class="button button2" onclick="openForm()">I lost my pet</button>
-<button class="button button3" onclick="openForm1()">I found a pet</button>
+<button onClick="parent.open('http://localhost:8000/CitizenController/LostPetForm')" class="button button2">I lost my pet</button>
+<button onClick="parent.open('http://localhost:8000/CitizenController/FoundPetForm')" class="button button3">I found a pet</button>
 <button onClick="parent.open('http://localhost:8000/login?logout')" class="button button4">Logout</button>
 
-
-<div class="form-popup" id="openForm">
-    <form action="/action_page.php" class="form-container"></form>
-    <h1>Lost pet</h1>
-
-    <label for="text"><b>number of Microchip</b></label>
-    <input type="text" placeholder="Enter number of Microchip" name="number of Microchip" required>
-
-    <button type="submit" class="btn">Send</button>
-    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-
-    </form>
-
-</div>
-
-<div class="form-popup1" id="openForm1">
-    <form action="/action_page.php" class="form-container"></form>
-    <h1>Found pet</h1>
-
-    <label for="text"><b>number of Microchip</b></label>
-    <input type="text" placeholder="Enter number of Microchip" name="number of Microchip" required>
-
-    <button type="submit" class="btn">Send</button>
-    <button type="button" class="btn cancel" onclick="closeForm1()">Close</button>
-
-    </form>
-
-</div>
-
-<script>
-    function openForm(){
-        document.getElementById("openForm").style.display = "block";
-    }
-    function closeForm(){
-        document.getElementById("openForm").style.display = "none";
-    }
-
-    function openForm1(){
-        document.getElementById("openForm1").style.display = "block";
-    }
-
-    function closeForm1(){
-        document.getElementById("openForm1").style.display = "none";
-    }
-</script>
 
 </body>
 </html>

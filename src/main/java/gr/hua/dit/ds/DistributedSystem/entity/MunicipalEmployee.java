@@ -50,6 +50,19 @@ public class MunicipalEmployee {
             inverseJoinColumns=@JoinColumn(name="citizen_amka"))
     private List<Citizen> citizenList;
 
+    @ManyToMany(fetch=FetchType.LAZY,
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name="lostPet_Pet",
+            joinColumns=@JoinColumn(name="pet_numberOfMicrochip"),
+            inverseJoinColumns=@JoinColumn(name="lostPet_numberOfMicrochip"))
+    private List<Pet> lostPets;
+
+    public List<Pet> getLostPets(){
+        return lostPets;
+    }
+
     public MunicipalEmployee() {
 
     }
@@ -103,19 +116,5 @@ public class MunicipalEmployee {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';
-    }
-
-    @ManyToMany(fetch=FetchType.LAZY,
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(
-            name="lostPet",
-            joinColumns=@JoinColumn(name="amkaOwner"),
-            inverseJoinColumns=@JoinColumn(name="numberOfMicrochip"))
-    private List<Pet> lostPets;
-
-    public List getLostPets(){
-
-        return lostPets;
     }
 }

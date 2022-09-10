@@ -1,8 +1,6 @@
 package gr.hua.dit.ds.DistributedSystem.service;
 
-import gr.hua.dit.ds.DistributedSystem.entity.Citizen;
 import gr.hua.dit.ds.DistributedSystem.entity.Pet;
-import gr.hua.dit.ds.DistributedSystem.entity.MunicipalEmployee;
 import gr.hua.dit.ds.DistributedSystem.repository.CitizenRepository;
 import gr.hua.dit.ds.DistributedSystem.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,31 +42,35 @@ public class CitizenServiceImpl implements CitizenService{
 //        return false;
 //    }
 
-    @Override
-    @Transactional
-    public ResponseEntity<Object> addNewPet(@RequestBody Pet pet) {
-        Pet savedPet = petRepository.save(pet);
-        System.out.println("pet: number of microchip"+savedPet.getNumberOfMicrochip());
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{numberOfMicrochip}").buildAndExpand(savedPet.getAmkaOwner()).toUri();
-        return ResponseEntity.created(location).build();
-    }
+//    @Override
+//    @Transactional
+//    public ResponseEntity<Object> addNewPet(@RequestBody Pet pet) {
+//        Pet savedPet = petRepository.save(pet);
+//        System.out.println("pet: number of microchip"+savedPet.getNumberOfMicrochip());
+//
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{numberOfMicrochip}").buildAndExpand(savedPet.getAmkaOwner()).toUri();
+//        return ResponseEntity.created(location).build();
+//    }
+//
+//    List<Optional<Pet>> listLostPet;
 
     //Κάνει μια δήλωση ότι έχασε το κατοικίδιο του
-    @Override
-    @Transactional
-    public void lostPet(@RequestBody Pet pet) {
-        // εδώ θα έχω μια φόρμα
-        Optional<Pet> optionalPet = petRepository.findById(pet.getNumberOfMicrochip());
-    }
+//    @Override
+//    @Transactional
+//    public void lostPet(@RequestBody Pet pet) {
+//        // εδώ θα έχω μια φόρμα
+//        Optional<Pet> optionalPet = petRepository.findById(pet.getNumberOfMicrochip());
+//        listLostPet.add(optionalPet);
+//        System.out.println(listLostPet);
+//    }
 
     //Κάνει μια δήλωση ότι βρήκε ένα κατοικίδιο κάποιου άλλου ιδιοκτήτη
-    @Override
-    @Transactional
-    public void findPet(@RequestBody Pet pet) {
-        Optional<Pet> optionalPet = petRepository.findById(pet.getNumberOfMicrochip());
-        if (optionalPet.isPresent()){
-
-        }
-    }
+//    @Override
+//    @Transactional
+//    public void findPet(@RequestBody Pet pet) {
+//        Optional<Pet> optionalPet = petRepository.findById(pet.getNumberOfMicrochip());
+//        if (optionalPet.isPresent()){
+//
+//        }
+//    }
 }

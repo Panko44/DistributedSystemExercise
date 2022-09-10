@@ -7,9 +7,9 @@ public interface VeterinaryService {
 
     //public boolean logIn(String email, String password);
 
-    public void examinationStatement(@RequestBody Pet pet);
-
-    public void confirmationData(@RequestBody Pet pet);
+//    public void examinationStatement(@RequestBody Pet pet);
+//
+//    public void confirmationData(@RequestBody Pet pet);
 
 
 }

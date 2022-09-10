@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,12 +40,12 @@ public class MunicipalEmployeeServiceImpl implements MunicipalEmployeeService{
 //        return false;
 //    }
 
-@Override
-    @Transactional
-    public void notificationOwner(@PathVariable Integer numberOfMicrochip) {
-        Optional<Pet> optionalPet = petRepository.findById(numberOfMicrochip);
-        if(optionalPet.isPresent()){
-            // send email
-        }
-    }
+//@Override
+//    @Transactional
+//    public void notificationOwner(@PathVariable Integer numberOfMicrochip) {
+//        Optional<Pet> optionalPet = petRepository.findById(numberOfMicrochip);
+//        if(optionalPet.isPresent()){
+//            // send email
+//        }
+//    }
 }

@@ -21,34 +21,18 @@ public class VeterinaryServiceImpl implements VeterinaryService{
     @Autowired
     private VeterinaryRepository veterinaryRepository;
 
-
+//
 //    @Override
 //    @Transactional
-//    public boolean logIn(String email, String password) {
-//        if(email != null){
-//            Optional<Veterinary> admin = veterinaryRepository.findById(email);
-//            if(admin != null){
-//                if(admin.get().getPassword() == password){
-//                    return true;
-//                }
-//                return false;
-//            }
-//            return false;
-//        }
-//        return false;
+//    public void examinationStatement(@RequestBody Pet pet) {
+//        //εμφανίζεται η φόρμα
+//        //κάνει αποδοχή
 //    }
-
-    @Override
-    @Transactional
-    public void examinationStatement(@RequestBody Pet pet) {
-        //εμφανίζεται η φόρμα
-        //κάνει αποδοχή
-    }
-
-    @Override
-    @Transactional
-    public void confirmationData(@RequestBody Pet pet) {
-        // κάνει αποδοχή
-    }
+//
+//    @Override
+//    @Transactional
+//    public void confirmationData(@RequestBody Pet pet) {
+//        // κάνει αποδοχή
+//    }
 
 }

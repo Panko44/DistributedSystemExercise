@@ -6,21 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(securedEnabled = true)
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
+
+    private AuthenticationSuccessHandler authenticationSuccessHandler;
+
+    @Autowired
+    public AppSecurityConfig(AuthenticationSuccessHandler authenticationSuccessHandler) {
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -28,7 +34,6 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery("select email, password, enabled from user_security where email=?")
                 .authoritiesByUsernameQuery("select email, authority from authorities where email=?");
-
     }
 
     @Override
@@ -36,10 +41,12 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().and().authorizeRequests()
                 .antMatchers("/","/api","/login").permitAll()
                 .antMatchers("/AdministratorController/**").hasRole("ADMIN")
-                .antMatchers("/CitizenController/**","/MunicipalEmployeeController/**","/VeterinaryController/**").hasRole("USER")
+                .antMatchers("/MunicipalEmployeeController/**").hasRole("MUNICIPAL")
+                .antMatchers("/VeterinaryController/**").hasRole("VET")
+                .antMatchers("/CitizenController/**").hasRole("CITIZEN")
                 .anyRequest().authenticated()
                 .and().csrf().disable().headers().frameOptions().disable()
-                .and().formLogin().permitAll().and().logout().invalidateHttpSession(true)
+                .and().formLogin().successHandler(authenticationSuccessHandler).permitAll().and().logout().invalidateHttpSession(true)
                 .clearAuthentication(true).permitAll();
     }
 

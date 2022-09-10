@@ -19,17 +19,17 @@
 <form action="#" th:action="@{/AdministratorController/AdministratorAddUser/veterinarySave}" th:object="${veterinary}"
       method="POST">
     <input type="text" th:field="*{age}"
-           placeholder="Employee age" class="form-control mb-4 col-4">
+           placeholder="Veterinary age" class="form-control mb-4 col-4">
     <input type="text" th:field="*{fullName}"
-           placeholder="Employee fullNAme" class="form-control mb-4 col-4">
+           placeholder="Veterinary fullNAme" class="form-control mb-4 col-4">
     <input type="text" th:field="*{AMKA}"
-           placeholder="Employee AMKA" class="form-control mb-4 col-4">
+           placeholder="Veterinary AMKA" class="form-control mb-4 col-4">
     <input type="text" th:field="*{municipalHouse}"
-           placeholder="Employee municipal" class="form-control mb-4 col-4">
+           placeholder="Veterinary municipal" class="form-control mb-4 col-4">
     <input type="text" th:field="*{password}"
-           placeholder="Employee password" class="form-control mb-4 col-4">
+           placeholder="Veterinary password" class="form-control mb-4 col-4">
     <input type="text" th:field="*{email}"
-           placeholder="Employee Email" class="form-control mb-4 col-4">
+           placeholder="Veterinary Email" class="form-control mb-4 col-4">
 
     <button type="submit" class="btn btn-info col-2"> Save Employee</button>
 </form>
